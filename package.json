@@ -2,6 +2,7 @@
   "name": "calmnous",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +13,7 @@
     "generate:types": "payload generate:types --disable-transpile",
     "generate:importmap": "payload generate:importmap --disable-transpile",
     "seed": "npx payload run ./scripts/seed.ts --disable-transpile",
+    "db:migrate": "payload migrate",
     "logos:bacp": "node scripts/extract-bacp-logo.mjs",
     "logos:bps": "node scripts/fetch-bps-logo.mjs"
   },

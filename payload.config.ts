@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -183,6 +184,20 @@ if (
   )
 }
 
+const postgresProdMigrations = [
+  {
+    name: '20260506_130355_initial',
+    up: async (args: MigrateUpArgs) => {
+      const { up } = await import('./migrations/20260506_130355_initial')
+      return up(args)
+    },
+    down: async (args: MigrateDownArgs) => {
+      const { down } = await import('./migrations/20260506_130355_initial')
+      return down(args)
+    },
+  },
+]
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -201,6 +216,7 @@ export default buildConfig({
         pool: {
           connectionString: postgresPoolConnectionString(databaseUrl),
         },
+        prodMigrations: postgresProdMigrations,
       })
     : sqliteAdapter({
         client: {
