@@ -173,6 +173,16 @@ function postgresPoolConnectionString(url: string): string {
   return url.replace(/^prisma\+/i, '')
 }
 
+if (
+  isProduction &&
+  /sslmode=/i.test(databaseUrl) &&
+  !isPostgresDatabaseUrl(databaseUrl)
+) {
+  throw new Error(
+    'DATABASE_URL includes sslmode= but is not a Postgres URL. Use postgres:// or postgresql:// (remove wrapping quotes). On Vercel, set DATABASE_URL or rely on POSTGRES_URL from the Postgres integration.',
+  )
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
