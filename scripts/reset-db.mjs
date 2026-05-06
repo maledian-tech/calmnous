@@ -1,6 +1,7 @@
 /**
  * Deletes the local SQLite file used by Payload (default: payload.db).
  * On Windows, EBUSY means another process still has the file open — stop `next dev` first.
+ * If DATABASE_URL is Postgres, this script does nothing (manage that DB in your host’s dashboard).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -9,8 +10,21 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
+const rawUrl = process.env.DATABASE_URL?.trim() ?? "";
+const lower = rawUrl.toLowerCase();
+if (
+  lower.startsWith("postgres://") ||
+  lower.startsWith("postgresql://")
+) {
+  console.log(
+    "DATABASE_URL points at Postgres — npm run db:reset only removes local SQLite files.",
+  );
+  console.log("Drop or reset your Postgres database using your provider (Neon, Supabase, etc.).");
+  process.exit(0);
+}
+
 function sqlitePathFromDatabaseUrl() {
-  const raw = process.env.DATABASE_URL?.trim();
+  const raw = rawUrl;
   if (!raw || !raw.startsWith("file:")) {
     return path.join(root, "payload.db");
   }

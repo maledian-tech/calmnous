@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig } from 'payload'
@@ -100,6 +101,24 @@ const Services: CollectionConfig = {
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const isProduction = process.env.NODE_ENV === 'production'
+const payloadSecret =
+  process.env.PAYLOAD_SECRET?.trim() ||
+  (isProduction ? '' : 'calmnous-dev-only-secret-change-for-production-min-32')
+
+if (isProduction && !payloadSecret) {
+  throw new Error(
+    'PAYLOAD_SECRET is required in production. Add it in Vercel: Project → Settings → Environment Variables (Production). Use a long random value (e.g. run: node -e "console.log(require(\'crypto\').randomBytes(32).toString(\'hex\'))").',
+  )
+}
+
+const databaseUrl = process.env.DATABASE_URL?.trim() || 'file:payload.db'
+
+function isPostgresDatabaseUrl(url: string): boolean {
+  const lower = url.toLowerCase()
+  return lower.startsWith('postgres://') || lower.startsWith('postgresql://')
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -109,19 +128,21 @@ export default buildConfig({
   },
   collections: [Users, Media, Services],
   editor: lexicalEditor(),
-  secret:
-    process.env.PAYLOAD_SECRET?.trim() ||
-    (process.env.NODE_ENV !== 'production'
-      ? 'calmnous-dev-only-secret-change-for-production-min-32'
-      : ''),
+  secret: payloadSecret,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URL || 'file:payload.db',
-    },
-  }),
+  db: isPostgresDatabaseUrl(databaseUrl)
+    ? postgresAdapter({
+        pool: {
+          connectionString: databaseUrl,
+        },
+      })
+    : sqliteAdapter({
+        client: {
+          url: databaseUrl,
+        },
+      }),
   sharp,
   plugins: [],
 })
