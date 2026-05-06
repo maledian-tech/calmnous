@@ -112,11 +112,65 @@ if (isProduction && !payloadSecret) {
   )
 }
 
-const databaseUrl = process.env.DATABASE_URL?.trim() || 'file:payload.db'
+const databaseUrl = resolveDatabaseUrl()
+
+/** Trim BOM/quotes from pasted env vars so scheme detection works. */
+function normalizeConnectionUrl(raw: string): string {
+  let u = raw.trim().replace(/^\uFEFF/, '')
+  if (
+    (u.startsWith('"') && u.endsWith('"')) ||
+    (u.startsWith("'") && u.endsWith("'"))
+  ) {
+    u = u.slice(1, -1).trim()
+  }
+  return u
+}
+
+/**
+ * Vercel Postgres / Neon often set POSTGRES_URL; pooled URLs may include ?sslmode=require
+ * (invalid for LibSQL — must use the Postgres adapter).
+ * If production still has DATABASE_URL=file:... but POSTGRES_URL is set, prefer Postgres.
+ */
+function resolveDatabaseUrl(): string {
+  const dbUrl = process.env.DATABASE_URL?.trim()
+  const pgUrl = process.env.POSTGRES_URL?.trim()
+  const prismaUrl = process.env.POSTGRES_PRISMA_URL?.trim()
+
+  const isProd = process.env.NODE_ENV === 'production'
+  const normalizedDb = dbUrl ? normalizeConnectionUrl(dbUrl) : ''
+  const normalizedPg = pgUrl ? normalizeConnectionUrl(pgUrl) : ''
+  const normalizedPrisma = prismaUrl ? normalizeConnectionUrl(prismaUrl) : ''
+
+  if (
+    isProd &&
+    normalizedDb.toLowerCase().startsWith('file:') &&
+    (normalizedPg || normalizedPrisma)
+  ) {
+    return normalizedPg || normalizedPrisma
+  }
+
+  for (const c of [normalizedDb, normalizedPg, normalizedPrisma]) {
+    if (c) {
+      return c
+    }
+  }
+  return 'file:payload.db'
+}
 
 function isPostgresDatabaseUrl(url: string): boolean {
+  if (!url) {
+    return false
+  }
   const lower = url.toLowerCase()
-  return lower.startsWith('postgres://') || lower.startsWith('postgresql://')
+  return (
+    /^postgres(ql)?:\/\//.test(lower) ||
+    /^prisma\+postgres(ql)?:\/\//.test(lower)
+  )
+}
+
+/** `pg` wants `postgres://`, not `prisma+postgres://`. */
+function postgresPoolConnectionString(url: string): string {
+  return url.replace(/^prisma\+/i, '')
 }
 
 export default buildConfig({
@@ -135,7 +189,7 @@ export default buildConfig({
   db: isPostgresDatabaseUrl(databaseUrl)
     ? postgresAdapter({
         pool: {
-          connectionString: databaseUrl,
+          connectionString: postgresPoolConnectionString(databaseUrl),
         },
       })
     : sqliteAdapter({
