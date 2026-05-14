@@ -230,9 +230,14 @@ function isPostgresDatabaseUrl(url: string): boolean {
   )
 }
 
-/** `pg` wants `postgres://`, not `prisma+postgres://`. */
+/** `pg` wants `postgres://`, not `prisma+postgres://`.
+ *  Also normalise sslmode to verify-full to silence the pg-connection-string
+ *  deprecation warning (prefer/require/verify-ca currently alias verify-full,
+ *  but that will change in pg v9 / pg-connection-string v3). */
 function postgresPoolConnectionString(url: string): string {
-  return url.replace(/^prisma\+/i, '')
+  return url
+    .replace(/^prisma\+/i, '')
+    .replace(/sslmode=(prefer|require|verify-ca)/gi, 'sslmode=verify-full')
 }
 
 if (
