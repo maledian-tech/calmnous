@@ -262,6 +262,17 @@ const postgresProdMigrations = [
       return down(args)
     },
   },
+  {
+    name: '20260514_add_posts',
+    up: async (args: MigrateUpArgs) => {
+      const { up } = await import('./migrations/20260514_add_posts')
+      return up(args)
+    },
+    down: async (args: MigrateDownArgs) => {
+      const { down } = await import('./migrations/20260514_add_posts')
+      return down(args)
+    },
+  },
 ]
 
 export default buildConfig({
