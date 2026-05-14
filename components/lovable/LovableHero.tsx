@@ -15,7 +15,7 @@ function BookConsultationButton({
   bookingHref: string | null;
   className?: string;
 }) {
-  const href = bookingHref ?? "#contact";
+  const href = bookingHref ?? "/book";
   const isExternal = href.startsWith("http");
 
   if (isExternal) {

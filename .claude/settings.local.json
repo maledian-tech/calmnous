@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"c:\\\\Users\\\\maled\\\\Documents\\\\dev\\\\calmnous\\\\\" | head -30)",
+      "Read(//c/Users/maled/Documents/dev/**)",
+      "Bash(mkdir -p \"c:\\\\Users\\\\maled\\\\Documents\\\\dev\\\\calmnous\\\\app\\\\\\(site\\)\\\\journal\\\\[slug]\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\maled\\Documents\\dev\\calmnous\\app\\(site)\\journal"
+    ]
+  }
+}

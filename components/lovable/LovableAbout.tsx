@@ -1,18 +1,36 @@
-export function LovableAbout() {
+import Image from "next/image";
+
+import { WaveDecoration } from "@/components/lovable/WaveDecoration";
+
+type Props = {
+  photoSrc?: string | null;
+};
+
+export function LovableAbout({ photoSrc }: Props) {
   return (
     <section id="about" className="px-6 py-32 md:px-16">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-12">
+      <div className="grid items-center gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-secondary shadow-[var(--shadow-soft)]">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-secondary" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-serif text-[12rem] leading-none text-primary/15">
-                SB
-              </span>
-            </div>
+            {photoSrc ? (
+              <Image
+                src={photoSrc}
+                alt="Sotirios Batsos — integrative psychotherapist"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 42vw"
+                priority
+              />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary to-secondary/60" />
+                <WaveDecoration className="absolute bottom-0 left-0 right-0 h-32 opacity-80" />
+                <WaveDecoration className="absolute bottom-8 left-0 right-0 h-24 opacity-50" />
+              </>
+            )}
             <div className="absolute bottom-6 left-6 right-6 text-primary">
-              <p className="font-serif text-2xl">Sotirios Batsos</p>
-              <p className="mt-1 text-xs uppercase tracking-widest text-primary/70">
+              <p className="font-serif text-2xl drop-shadow-sm">Sotirios Batsos</p>
+              <p className="mt-1 text-xs uppercase tracking-widest text-primary/70 drop-shadow-sm">
                 MSc, Integrative Psychotherapist
               </p>
             </div>

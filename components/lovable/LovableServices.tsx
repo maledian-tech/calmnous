@@ -11,7 +11,7 @@ type Props = {
 export function LovableServices({ items }: Props) {
   return (
     <section id="services" className="bg-secondary/40 px-6 py-32 md:px-16">
-      <div className="mx-auto max-w-6xl">
+      <div>
         <div className="mb-6 flex items-center gap-3">
           <div className="h-px w-8 bg-accent" />
           <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">

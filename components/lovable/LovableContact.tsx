@@ -13,7 +13,7 @@ function BookConsultationButton({
   bookingHref: string | null;
   className?: string;
 }) {
-  const href = bookingHref ?? "#contact";
+  const href = bookingHref ?? "/book";
   const isExternal = href.startsWith("http");
 
   if (isExternal) {
@@ -36,7 +36,7 @@ function BookConsultationButton({
 export function LovableContact({ bookingHref }: Props) {
   return (
     <section id="contact" className="px-6 py-32 md:px-16">
-      <div className="mx-auto max-w-4xl text-center">
+      <div className="text-center">
         <div className="mb-6 flex items-center justify-center gap-3">
           <div className="h-px w-8 bg-accent" />
           <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">
@@ -65,7 +65,7 @@ export function LovableContact({ bookingHref }: Props) {
             <a href="mailto:hello@calmnous.com">hello@calmnous.com</a>
           </Button>
         </div>
-        <div className="mx-auto grid max-w-3xl gap-8 border-t border-border pt-12 text-left sm:grid-cols-3">
+        <div className="grid gap-8 border-t border-border pt-12 text-left sm:grid-cols-3">
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
               Practice

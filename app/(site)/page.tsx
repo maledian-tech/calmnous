@@ -26,8 +26,23 @@ function resolvePublicLogoPath(): string | null {
   return null;
 }
 
+const ABOUT_PHOTO_CANDIDATES = [
+  "practice/sotirios-batsos.jpg",
+  "practice/sotirios-batsos.jpeg",
+] as const;
+
+function resolveAboutPhotoPath(): string | null {
+  for (const name of ABOUT_PHOTO_CANDIDATES) {
+    const full = path.join(process.cwd(), "public", name);
+    if (existsSync(full)) {
+      return `/${name}`;
+    }
+  }
+  return null;
+}
+
 function resolveHeroVideoSrc(): string {
-  const v = process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim();
+  const v = process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() ?? "/hero/video.mp4";
   if (v && v !== "none") {
     return v;
   }
@@ -109,7 +124,7 @@ export default async function HomePage() {
   });
 
   const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim();
-  const bookingHref = bookingUrl ?? null;
+  const bookingHref = bookingUrl || null;
   const logoSrc = resolvePublicLogoPath();
 
   const serviceItems = services.docs.map((doc) => ({
@@ -120,6 +135,7 @@ export default async function HomePage() {
 
   const heroVideoSrc = resolveHeroVideoSrc();
   const heroPosterSrc = resolveHeroPosterSrc();
+  const aboutPhotoSrc = resolveAboutPhotoPath();
 
   return (
     <main className="min-h-screen bg-background">
@@ -131,7 +147,7 @@ export default async function HomePage() {
       />
       <LovablePhilosophy />
       <LovableServices items={serviceItems} />
-      <LovableAbout />
+      <LovableAbout photoSrc={aboutPhotoSrc} />
       <LovableApproach />
       <LovableContact bookingHref={bookingHref} />
       <LovableSiteFooter logoSrc={logoSrc} />

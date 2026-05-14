@@ -67,9 +67,9 @@ export function LovableSiteFooter({ logoSrc }: Props) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-6 py-14 md:px-16 md:py-16">
-        <div className="grid gap-12 md:grid-cols-12 md:gap-10">
+    <footer className="border-t border-border bg-secondary/40 px-6 py-14 md:px-16 md:py-16">
+      <div>
+        <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <Link
               href="/"
@@ -96,7 +96,7 @@ export function LovableSiteFooter({ logoSrc }: Props) {
 
           <div className="md:col-span-4">
             <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
-              Contact
+              Get in touch
             </h2>
             <a
               href={`mailto:${email}`}
@@ -114,35 +114,50 @@ export function LovableSiteFooter({ logoSrc }: Props) {
             </a>
           </div>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-2">
             <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
-              Connect
+              Explore
             </h2>
+            <nav className="mt-4 flex flex-col gap-2">
+              {[
+                { label: "Journal", href: "/journal" },
+                { label: "Services", href: "/#services" },
+                { label: "About", href: "/#about" },
+                { label: "Philosophy", href: "/#philosophy" },
+              ].map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="text-sm font-light text-foreground/75 transition-colors hover:text-primary"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="md:col-span-2">
             {instagramUrl ? (
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 flex items-start gap-3 rounded-lg py-1 text-foreground/90 transition-colors hover:text-primary"
-              >
-                <span className="mt-0.5 text-accent">
-                  <IconInstagram className="size-5" />
-                </span>
-                <span>
-                  <span className="block text-sm font-medium">
-                    {instagramLabel}
+              <>
+                <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
+                  Connect
+                </h2>
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 flex items-start gap-3 rounded-lg py-1 text-foreground/90 transition-colors hover:text-primary"
+                >
+                  <span className="mt-0.5 text-accent">
+                    <IconInstagram className="size-5" />
                   </span>
-                  <span className="mt-0.5 block text-xs font-light text-muted-foreground">
-                    Follow for occasional notes and practice updates.
+                  <span>
+                    <span className="block text-sm font-medium">
+                      {instagramLabel}
+                    </span>
                   </span>
-                </span>
-              </a>
-            ) : (
-              <p className="mt-4 text-sm font-light text-muted-foreground">
-                Social links can be added when you are ready to share them
-                publicly.
-              </p>
-            )}
+                </a>
+              </>
+            ) : null}
           </div>
         </div>
 

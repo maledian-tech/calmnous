@@ -35,6 +35,67 @@ const Media: CollectionConfig = {
   upload: true,
 }
 
+const Posts: CollectionConfig = {
+  slug: 'posts',
+  admin: {
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'publishedAt', 'published'],
+  },
+  access: {
+    read: () => true,
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: {
+        description: 'URL-friendly identifier (e.g. on-being-enough)',
+      },
+    },
+    {
+      name: 'excerpt',
+      type: 'textarea',
+      admin: {
+        description: 'Short summary shown on the journal listing page.',
+      },
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      admin: {
+        description: 'Full article content.',
+      },
+    },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        description: 'Publication date shown to readers.',
+        date: {
+          pickerAppearance: 'dayOnly',
+          displayFormat: 'd MMM yyyy',
+        },
+      },
+    },
+    {
+      name: 'published',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        description: 'When enabled, appears on the public journal page.',
+      },
+    },
+  ],
+}
+
 const Services: CollectionConfig = {
   slug: 'services',
   admin: {
@@ -205,7 +266,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Services],
+  collections: [Users, Media, Services, Posts],
   editor: lexicalEditor(),
   secret: payloadSecret,
   typescript: {

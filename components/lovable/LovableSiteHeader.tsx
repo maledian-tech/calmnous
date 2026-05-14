@@ -10,7 +10,7 @@ const links = [
   { label: "Philosophy", href: "/#philosophy" },
   { label: "Services", href: "/#services" },
   { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Journal", href: "/journal" },
 ] as const;
 
 type Props = {
@@ -27,12 +27,12 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const ctaHref = bookingHref ?? "#contact";
+  const ctaHref = bookingHref ?? "/book";
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-6 pt-6 md:px-16 md:pt-8">
+    <header className="fixed left-0 right-0 top-0 z-50 px-6 py-4 md:px-16 md:py-5">
       <div
-        className={`mx-auto max-w-6xl rounded-full border border-border/70 backdrop-blur-md transition-all duration-500 ${
+        className={`rounded-full border border-border/70 backdrop-blur-md transition-all duration-500 ${
           scrolled
             ? "bg-background/95 shadow-[var(--shadow-float)]"
             : "bg-background/88"

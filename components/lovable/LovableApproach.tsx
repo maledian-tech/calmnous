@@ -19,7 +19,7 @@ const steps = [
 export function LovableApproach() {
   return (
     <section className="bg-primary px-6 py-32 text-primary-foreground md:px-16">
-      <div className="mx-auto max-w-6xl">
+      <div>
         <div className="mb-6 flex items-center gap-3">
           <div className="h-px w-8 bg-accent" />
           <span className="text-xs uppercase tracking-[0.25em] text-accent">
