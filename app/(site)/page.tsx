@@ -12,7 +12,8 @@ import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import config from "@payload-config";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // re-render in background every 5 min
+export const maxDuration = 30; // allow up to 30s on Vercel Pro; ignored on Hobby
 
 const LOGO_CANDIDATES = ["calmnous-logo.jpeg", "logo.png"] as const;
 

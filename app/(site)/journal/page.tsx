@@ -8,7 +8,8 @@ import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 import config from "@payload-config";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+export const maxDuration = 30;
 
 const LOGO_CANDIDATES = ["calmnous-logo.jpeg", "logo.png"] as const;
 

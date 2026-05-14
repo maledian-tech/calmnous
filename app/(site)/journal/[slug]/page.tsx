@@ -10,7 +10,8 @@ import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 import config from "@payload-config";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+export const maxDuration = 30;
 
 const LOGO_CANDIDATES = ["calmnous-logo.jpeg", "logo.png"] as const;
 
