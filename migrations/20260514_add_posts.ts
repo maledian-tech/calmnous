@@ -3,7 +3,7 @@ import { sql } from '@payloadcms/db-postgres'
 
 export async function up({ db }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-    CREATE TABLE "posts" (
+    CREATE TABLE IF NOT EXISTS "posts" (
       "id" serial PRIMARY KEY NOT NULL,
       "title" varchar NOT NULL,
       "slug" varchar NOT NULL,
@@ -16,16 +16,27 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     );
 
     ALTER TABLE "payload_locked_documents_rels"
-      ADD COLUMN "posts_id" integer;
+      ADD COLUMN IF NOT EXISTS "posts_id" integer;
 
-    ALTER TABLE "payload_locked_documents_rels"
-      ADD CONSTRAINT "payload_locked_documents_rels_posts_fk"
-      FOREIGN KEY ("posts_id") REFERENCES "public"."posts"("id") ON DELETE cascade ON UPDATE no action;
+    DO $$
+    BEGIN
+      IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint
+        WHERE conname = 'payload_locked_documents_rels_posts_fk'
+      ) THEN
+        ALTER TABLE "payload_locked_documents_rels"
+          ADD CONSTRAINT "payload_locked_documents_rels_posts_fk"
+          FOREIGN KEY ("posts_id") REFERENCES "public"."posts"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+    END $$;
 
-    CREATE UNIQUE INDEX "posts_slug_idx" ON "posts" USING btree ("slug");
-    CREATE INDEX "posts_updated_at_idx" ON "posts" USING btree ("updated_at");
-    CREATE INDEX "posts_created_at_idx" ON "posts" USING btree ("created_at");
-    CREATE INDEX "payload_locked_documents_rels_posts_id_idx"
+    CREATE UNIQUE INDEX IF NOT EXISTS "posts_slug_idx"
+      ON "posts" USING btree ("slug");
+    CREATE INDEX IF NOT EXISTS "posts_updated_at_idx"
+      ON "posts" USING btree ("updated_at");
+    CREATE INDEX IF NOT EXISTS "posts_created_at_idx"
+      ON "posts" USING btree ("created_at");
+    CREATE INDEX IF NOT EXISTS "payload_locked_documents_rels_posts_id_idx"
       ON "payload_locked_documents_rels" USING btree ("posts_id");
   `)
 }
