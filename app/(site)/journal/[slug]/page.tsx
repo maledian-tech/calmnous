@@ -55,14 +55,13 @@ export default async function JournalPostPage({
   if (!post) notFound();
 
   const logoSrc = resolvePublicLogoPath();
-  const bookingHref = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() ?? null;
   const date = formatDate(
     typeof post.publishedAt === "string" ? post.publishedAt : null,
   );
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <LovableSiteHeader logoSrc={logoSrc} bookingHref={bookingHref} />
+      <LovableSiteHeader logoSrc={logoSrc} bookingHref={null} />
 
       {/* Article header */}
       <header className="relative overflow-hidden border-b border-border pt-40 pb-16 px-6 md:px-16">

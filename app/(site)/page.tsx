@@ -42,25 +42,6 @@ function resolveAboutPhotoPath(): string | null {
   return null;
 }
 
-function resolveHeroVideoSrc(): string {
-  const v = process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() ?? "/hero/video.mp4";
-  if (v && v !== "none") {
-    return v;
-  }
-  return "/hero/hero-loop.mp4";
-}
-
-function resolveHeroPosterSrc(): string | undefined {
-  const v = process.env.NEXT_PUBLIC_HERO_POSTER_URL?.trim();
-  if (v === "none") {
-    return undefined;
-  }
-  if (v) {
-    return v;
-  }
-  return "/hero/hero-poster.jpg";
-}
-
 /** Walk Error.cause so LibSQL/SQLite details are included in checks. */
 function formatPayloadInitError(err: unknown): string {
   const parts: string[] = [];
@@ -133,18 +114,12 @@ export default async function HomePage() {
     summary: doc.summary,
   }));
 
-  const heroVideoSrc = resolveHeroVideoSrc();
-  const heroPosterSrc = resolveHeroPosterSrc();
   const aboutPhotoSrc = resolveAboutPhotoPath();
 
   return (
     <main className="min-h-screen bg-background">
       <LovableSiteHeader logoSrc={logoSrc} bookingHref={bookingHref} />
-      <LovableHero
-        bookingHref={bookingHref}
-        videoSrc={heroVideoSrc}
-        posterSrc={heroPosterSrc}
-      />
+      <LovableHero bookingHref={bookingHref} />
       <LovablePhilosophy />
       <LovableServices items={serviceItems} />
       <LovableAbout photoSrc={aboutPhotoSrc} />

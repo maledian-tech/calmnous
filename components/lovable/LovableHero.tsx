@@ -2,10 +2,12 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
+// YouTube video ID — hardcoded, no env var needed
+const YT_ID = "1P0-EY-jRjk";
+const YT_EMBED = `https://www.youtube.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&playsinline=1&rel=0&modestbranding=1&disablekb=1`;
+
 type Props = {
   bookingHref: string | null;
-  videoSrc: string;
-  posterSrc?: string;
 };
 
 function BookConsultationButton({
@@ -15,43 +17,33 @@ function BookConsultationButton({
   bookingHref: string | null;
   className?: string;
 }) {
-  const href = bookingHref ?? "/book";
-  const isExternal = href.startsWith("http");
-
-  if (isExternal) {
-    return (
-      <Button
-        size="lg"
-        asChild
-        className={className}
-      >
-        <a href={href} target="_blank" rel="noopener noreferrer">
-          Book a consultation
-        </a>
-      </Button>
-    );
-  }
-
   return (
     <Button size="lg" asChild className={className}>
-      <Link href={href}>Book a consultation</Link>
+      <Link href={bookingHref ?? "/book"}>Book a consultation</Link>
     </Button>
   );
 }
 
-export function LovableHero({ bookingHref, videoSrc, posterSrc }: Props) {
+export function LovableHero({ bookingHref }: Props) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={posterSrc}
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+      {/* YouTube background — covers the section regardless of aspect ratio */}
+      <div className="absolute inset-0 overflow-hidden">
+        <iframe
+          src={YT_EMBED}
+          title="Background video"
+          allow="autoplay; encrypted-media"
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
+          style={{
+            width: "max(100%, calc(100vh * 16 / 9))",
+            height: "max(100%, calc(100vw * 9 / 16))",
+            minWidth: "100%",
+            minHeight: "100%",
+          }}
+          aria-hidden="true"
+        />
+      </div>
+
       <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/20" />
       <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/40" />
 
