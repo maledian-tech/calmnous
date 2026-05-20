@@ -3,7 +3,9 @@
     "allow": [
       "Bash(ls -la \"c:\\\\Users\\\\maled\\\\Documents\\\\dev\\\\calmnous\\\\\" | head -30)",
       "Read(//c/Users/maled/Documents/dev/**)",
-      "Bash(mkdir -p \"c:\\\\Users\\\\maled\\\\Documents\\\\dev\\\\calmnous\\\\app\\\\\\(site\\)\\\\journal\\\\[slug]\")"
+      "Bash(mkdir -p \"c:\\\\Users\\\\maled\\\\Documents\\\\dev\\\\calmnous\\\\app\\\\\\(site\\)\\\\journal\\\\[slug]\")",
+      "WebFetch(domain:widget.simplybook.it)",
+      "WebFetch(domain:simplybook.me)"
     ],
     "additionalDirectories": [
       "c:\\Users\\maled\\Documents\\dev\\calmnous\\app\\(site)\\journal"

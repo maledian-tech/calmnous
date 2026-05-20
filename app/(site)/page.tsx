@@ -124,8 +124,7 @@ export default async function HomePage() {
     depth: 0,
   });
 
-  const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim();
-  const bookingHref = bookingUrl || null;
+  const bookingHref = null; // all CTAs link to /book
   const logoSrc = resolvePublicLogoPath();
 
   const serviceItems = services.docs.map((doc) => ({
