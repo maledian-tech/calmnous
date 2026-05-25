@@ -90,7 +90,7 @@ export default async function JournalPostPage({
       </header>
 
       {/* Article body */}
-      <main className="flex-1 px-6 py-16 md:px-16">
+      <main className="flex-1 px-6 py-24 md:px-16">
         <div className="mx-auto max-w-3xl">
           {post.content ? (
             <div className="prose prose-lg max-w-none font-light leading-relaxed text-foreground/85 [&_p]:mb-6 [&_h2]:mt-14 [&_h2]:mb-5 [&_h2]:font-serif [&_h2]:text-3xl [&_h2]:text-primary [&_blockquote]:border-l-2 [&_blockquote]:border-accent [&_blockquote]:pl-6 [&_blockquote]:font-serif [&_blockquote]:text-xl [&_blockquote]:italic [&_blockquote]:text-primary">

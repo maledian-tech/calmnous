@@ -161,98 +161,46 @@ export function LovableSiteFooter({ logoSrc }: Props) {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-border pt-12">
-          <h2 className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary md:text-left">
+        <div className="mt-14 border-t border-border pt-10">
+          <p className="mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/70">
             Professional memberships
-          </h2>
-
-          <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-12">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-              <a
-                href="https://www.bacp.co.uk/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 self-start rounded-md bg-card p-2 shadow-[var(--shadow-soft)] ring-1 ring-border/60 transition-shadow hover:shadow-[var(--shadow-float)]"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element -- user may supply SVG or PNG from BACP */}
-                <img
-                  src={bacpLogo}
-                  alt="British Association for Counselling and Psychotherapy"
-                  className="h-14 w-auto max-w-[220px] object-contain object-left"
-                  width={220}
-                  height={56}
-                />
-              </a>
-              <div className="min-w-0 space-y-2">
-                <p className="font-serif text-lg leading-snug text-primary">
-                  Registered member of the British Association for Counselling
-                  and Psychotherapy (BACP).
-                </p>
-                <p className="text-sm font-medium text-foreground/85">
-                  {bacpReg ? (
-                    <>
-                      BACP Register membership number:{" "}
-                      <span className="tabular-nums text-primary">
-                        {bacpReg}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="font-normal font-light text-muted-foreground">
-                      BACP Register number shared on enquiry or at first
-                      session.
-                    </span>
-                  )}
-                </p>
-                <p className="text-xs font-light leading-relaxed text-muted-foreground">
-                  The BACP Register is accredited by the Professional Standards
-                  Authority.{" "}
-                  <a
-                    href="https://www.bacp.co.uk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-primary underline-offset-2 hover:underline"
-                  >
-                    bacp.co.uk
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-              <a
-                href="https://www.bps.org.uk/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 self-start rounded-md bg-card p-2 shadow-[var(--shadow-soft)] ring-1 ring-border/60 transition-shadow hover:shadow-[var(--shadow-float)]"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element -- user may supply SVG or PNG from BPS */}
-                <img
-                  src={bpsLogo}
-                  alt="British Psychological Society"
-                  className="h-14 w-auto max-w-[220px] object-contain object-left"
-                  width={220}
-                  height={56}
-                />
-              </a>
-              <div className="min-w-0 space-y-2">
-                <p className="font-serif text-lg leading-snug text-primary">
-                  British Psychological Society (BPS)
-                </p>
-                <p className="text-sm font-light leading-relaxed text-foreground/80">
-                  {bpsCaption}
-                </p>
-                <p className="text-xs font-light text-muted-foreground">
-                  <a
-                    href="https://www.bps.org.uk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-primary underline-offset-2 hover:underline"
-                  >
-                    bps.org.uk
-                  </a>
-                </p>
-              </div>
-            </div>
+          </p>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+            <a
+              href="https://www.bacp.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 opacity-70 transition-opacity hover:opacity-100"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- user may supply SVG or PNG from BACP */}
+              <img
+                src={bacpLogo}
+                alt="British Association for Counselling and Psychotherapy"
+                className="h-10 w-auto max-w-[160px] object-contain object-left"
+                width={160}
+                height={40}
+              />
+              {bacpReg && (
+                <span className="text-xs font-light tabular-nums text-muted-foreground">
+                  #{bacpReg}
+                </span>
+              )}
+            </a>
+            <a
+              href="https://www.bps.org.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 opacity-70 transition-opacity hover:opacity-100"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- user may supply SVG or PNG from BPS */}
+              <img
+                src={bpsLogo}
+                alt="British Psychological Society"
+                className="h-10 w-auto max-w-[160px] object-contain object-left"
+                width={160}
+                height={40}
+              />
+            </a>
           </div>
         </div>
 

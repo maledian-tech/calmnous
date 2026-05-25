@@ -2,7 +2,7 @@ import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 
 export function LovablePhilosophy() {
   return (
-    <section id="philosophy" className="relative overflow-hidden px-6 py-32 md:px-16">
+    <section id="philosophy" className="relative overflow-hidden px-6 py-40 md:px-16">
       <WaveDecoration className="absolute bottom-0 left-0 right-0 h-28" />
       <div className="relative grid items-start gap-12 md:grid-cols-12">
         <div className="md:col-span-4">

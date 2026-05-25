@@ -8,17 +8,17 @@ type Props = {
 
 export function LovableAbout({ photoSrc }: Props) {
   return (
-    <section id="about" className="px-6 py-32 md:px-16">
+    <section id="about" className="px-6 py-40 md:px-16">
       <div className="grid items-center gap-12 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-secondary shadow-[var(--shadow-soft)]">
+        <div className="md:col-span-4">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-secondary shadow-[var(--shadow-soft)]">
             {photoSrc ? (
               <Image
                 src={photoSrc}
                 alt="Sotirios Batsos — integrative psychotherapist"
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 42vw"
+                sizes="(max-width: 768px) 100vw, 35vw"
                 priority
               />
             ) : (
@@ -36,7 +36,7 @@ export function LovableAbout({ photoSrc }: Props) {
             </div>
           </div>
         </div>
-        <div className="md:col-span-6 md:col-start-7">
+        <div className="md:col-span-7 md:col-start-6">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
             <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">
@@ -60,8 +60,8 @@ export function LovableAbout({ photoSrc }: Props) {
           </div>
           <div className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
             {[
-              { k: "10+", v: "Years of practice" },
-              { k: "500+", v: "Clients supported" },
+              { k: "10+", v: "Years in mental health" },
+              { k: "Hundreds", v: "Lives walked alongside" },
               { k: "MSc", v: "Integrative training" },
             ].map((s) => (
               <div key={s.v}>

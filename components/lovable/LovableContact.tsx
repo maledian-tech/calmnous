@@ -35,7 +35,7 @@ function BookConsultationButton({
 
 export function LovableContact({ bookingHref }: Props) {
   return (
-    <section id="contact" className="px-6 py-32 md:px-16">
+    <section id="contact" className="px-6 py-40 md:px-16">
       <div className="text-center">
         <div className="mb-6 flex items-center justify-center gap-3">
           <div className="h-px w-8 bg-accent" />

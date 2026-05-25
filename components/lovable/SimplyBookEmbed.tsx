@@ -21,7 +21,7 @@ const THEME = {
 
 function WidgetSkeleton() {
   return (
-    <div aria-hidden="true" className="w-full rounded-2xl overflow-hidden bg-secondary/40 min-h-[680px]">
+    <div aria-hidden="true" className="w-full rounded-2xl overflow-hidden border border-border bg-secondary/30 shadow-[var(--shadow-soft)] min-h-[680px]">
       <div className="flex h-full min-h-[680px] flex-col gap-6 p-8 md:flex-row">
         <div className="flex w-full flex-col gap-4 md:w-56">
           <div className="h-5 w-3/4 animate-pulse rounded-lg bg-border" />
@@ -101,7 +101,7 @@ export function SimplyBookEmbed() {
 
       <div
         id={CONTAINER_ID}
-        className={initialized ? "w-full rounded-2xl overflow-hidden" : "hidden"}
+        className={initialized ? "w-full rounded-2xl overflow-hidden border border-border shadow-[var(--shadow-soft)] bg-background" : "hidden"}
       />
     </div>
   );

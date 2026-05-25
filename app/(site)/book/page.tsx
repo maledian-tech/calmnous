@@ -87,12 +87,12 @@ export default function BookPage() {
       </div>
 
       {/* Booking widget */}
-      <section className="px-6 py-14 md:px-16">
+      <section className="px-6 py-20 md:px-16">
         <SimplyBookEmbed />
       </section>
 
       {/* What to expect + If you're unsure */}
-      <section className="border-t border-border bg-secondary/30 px-6 py-16 md:px-16">
+      <section className="border-t border-border bg-secondary/30 px-6 py-24 md:px-16">
         <div className="grid gap-12 md:grid-cols-3">
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-3">
@@ -136,7 +136,7 @@ export default function BookPage() {
       </section>
 
       {/* Practical details */}
-      <section className="border-t border-border px-6 py-16 md:px-16">
+      <section className="border-t border-border px-6 py-24 md:px-16">
         <div className="mb-10 flex items-center gap-3">
           <div className="h-px w-8 bg-accent" />
           <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Practical details</span>
@@ -176,7 +176,7 @@ export default function BookPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border bg-secondary/30 px-6 py-16 md:px-16">
+      <section className="border-t border-border bg-secondary/30 px-6 py-24 md:px-16">
         <div className="mx-auto max-w-2xl">
           <div className="mb-8 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
@@ -189,7 +189,7 @@ export default function BookPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="border-t border-border px-6 py-16 md:px-16">
+      <section className="border-t border-border px-6 py-24 md:px-16">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
             <p className="font-serif text-2xl leading-snug text-primary md:text-3xl">

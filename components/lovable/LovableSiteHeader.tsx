@@ -38,21 +38,19 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
             : "bg-background/88"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-4 md:px-10 md:py-5">
-          <Link href="/" className="flex items-center gap-2">
+        <div className="flex items-center justify-between px-6 py-2.5 md:px-10 md:py-3">
+          <Link href="/" className="flex items-center gap-2.5">
             {logoSrc ? (
               <Image
                 src={logoSrc}
                 alt="Calmnous logo"
                 width={176}
                 height={40}
-                className="h-10 w-auto rounded"
+                className="h-9 w-auto rounded"
                 priority
               />
             ) : null}
-            <span
-              className={`font-serif text-2xl font-semibold tracking-tight text-primary ${logoSrc ? "hidden sm:block" : ""}`}
-            >
+            <span className="font-serif text-2xl font-bold tracking-tight text-primary">
               Calmnous
             </span>
           </Link>

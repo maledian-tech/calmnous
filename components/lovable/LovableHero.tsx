@@ -27,8 +27,11 @@ function BookConsultationButton({
 export function LovableHero({ bookingHref }: Props) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* YouTube background — covers the section regardless of aspect ratio */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Static fallback — always visible, ensures hero is never blank */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70" />
+
+      {/* YouTube background — desktop only; autoplay blocked on mobile */}
+      <div className="absolute inset-0 hidden overflow-hidden md:block">
         <iframe
           src={YT_EMBED}
           title="Background video"

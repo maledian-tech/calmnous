@@ -67,7 +67,7 @@ export default async function JournalPage() {
       </div>
 
       {/* Posts grid */}
-      <main className="flex-1 px-6 py-20 md:px-16">
+      <main className="flex-1 px-6 py-32 md:px-16">
         <div>
           {posts.docs.length === 0 ? (
             <div className="py-24 text-center">
