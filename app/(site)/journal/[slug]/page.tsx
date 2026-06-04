@@ -1,7 +1,5 @@
-import { existsSync } from "fs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import path from "path";
 import { getPayload } from "payload";
 
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
@@ -9,19 +7,10 @@ import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 import config from "@payload-config";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
 export const revalidate = 300;
 export const maxDuration = 30;
-
-const LOGO_CANDIDATES = ["calmnous-logo.jpeg", "logo.png"] as const;
-
-function resolvePublicLogoPath(): string | null {
-  for (const name of LOGO_CANDIDATES) {
-    const full = path.join(process.cwd(), "public", name);
-    if (existsSync(full)) return `/${name}`;
-  }
-  return null;
-}
 
 function formatDate(dateStr: string | null | undefined): string {
   if (!dateStr) return "";

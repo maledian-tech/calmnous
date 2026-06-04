@@ -1,21 +1,9 @@
-import { existsSync } from "fs";
-import path from "path";
-
 import { BookingFaq } from "@/components/lovable/BookingFaq";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import { SimplyBookEmbed } from "@/components/lovable/SimplyBookEmbed";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
-
-const LOGO_CANDIDATES = ["calmnous-logo.jpeg", "logo.png"] as const;
-
-function resolvePublicLogoPath(): string | null {
-  for (const name of LOGO_CANDIDATES) {
-    const full = path.join(process.cwd(), "public", name);
-    if (existsSync(full)) return `/${name}`;
-  }
-  return null;
-}
+import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
 function IconClock() {
   return (

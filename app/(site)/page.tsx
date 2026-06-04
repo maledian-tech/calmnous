@@ -1,5 +1,3 @@
-import { existsSync } from "fs";
-import path from "path";
 import { getPayload } from "payload";
 
 import { LovableAbout } from "@/components/lovable/LovableAbout";
@@ -11,36 +9,10 @@ import { LovableServices } from "@/components/lovable/LovableServices";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import config from "@payload-config";
+import { resolveAboutPhotoPath, resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
 export const revalidate = 300; // re-render in background every 5 min
 export const maxDuration = 30; // allow up to 30s on Vercel Pro; ignored on Hobby
-
-const LOGO_CANDIDATES = ["calmnous-logo.jpeg", "logo.png"] as const;
-
-function resolvePublicLogoPath(): string | null {
-  for (const name of LOGO_CANDIDATES) {
-    const full = path.join(process.cwd(), "public", name);
-    if (existsSync(full)) {
-      return `/${name}`;
-    }
-  }
-  return null;
-}
-
-const ABOUT_PHOTO_CANDIDATES = [
-  "practice/sotirios-batsos.jpg",
-  "practice/sotirios-batsos.jpeg",
-] as const;
-
-function resolveAboutPhotoPath(): string | null {
-  for (const name of ABOUT_PHOTO_CANDIDATES) {
-    const full = path.join(process.cwd(), "public", name);
-    if (existsSync(full)) {
-      return `/${name}`;
-    }
-  }
-  return null;
-}
 
 /** Walk Error.cause so LibSQL/SQLite details are included in checks. */
 function formatPayloadInitError(err: unknown): string {
