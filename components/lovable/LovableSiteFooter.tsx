@@ -122,8 +122,8 @@ export function LovableSiteFooter({ logoSrc }: Props) {
               {[
                 { label: "Journal", href: "/journal" },
                 { label: "Services", href: "/#services" },
-                { label: "About", href: "/#about" },
-                { label: "Philosophy", href: "/#philosophy" },
+                { label: "About", href: "/about" },
+                { label: "Philosophy", href: "/philosophy" },
               ].map((l) => (
                 <a
                   key={l.href}

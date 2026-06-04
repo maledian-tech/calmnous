@@ -7,9 +7,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { label: "Philosophy", href: "/#philosophy" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
+  { label: "Philosophy", href: "/philosophy" },
+  { label: "About", href: "/about" },
   { label: "Journal", href: "/journal" },
 ] as const;
 
