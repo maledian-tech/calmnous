@@ -3,6 +3,10 @@ import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 import { LovablePhilosophy } from "@/components/lovable/LovablePhilosophy";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
+import { PageCta } from "@/components/lovable/PageCta";
+import { PhilosophyModalities } from "@/components/lovable/PhilosophyModalities";
+import { PhilosophyPillars } from "@/components/lovable/PhilosophyPillars";
+import { PhilosophyProcess } from "@/components/lovable/PhilosophyProcess";
 
 export const revalidate = 300;
 
@@ -13,6 +17,10 @@ export default function PhilosophyPage() {
     <main className="min-h-screen bg-background">
       <LovableSiteHeader logoSrc={logoSrc} bookingHref={null} />
       <LovablePhilosophy />
+      <PhilosophyPillars />
+      <PhilosophyModalities />
+      <PhilosophyProcess />
+      <PageCta />
       <LovableSiteFooter logoSrc={logoSrc} />
     </main>
   );
