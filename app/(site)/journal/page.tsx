@@ -7,7 +7,7 @@ import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 import config from "@payload-config";
 import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 function formatDate(dateStr: string | null | undefined): string {

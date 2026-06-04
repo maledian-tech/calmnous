@@ -11,7 +11,7 @@ import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import config from "@payload-config";
 import { resolveAboutPhotoPath, resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
-export const revalidate = 300; // re-render in background every 5 min
+export const dynamic = "force-dynamic";
 export const maxDuration = 30; // allow up to 30s on Vercel Pro; ignored on Hobby
 
 /** Walk Error.cause so LibSQL/SQLite details are included in checks. */

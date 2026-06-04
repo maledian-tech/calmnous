@@ -9,7 +9,7 @@ import config from "@payload-config";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 function formatDate(dateStr: string | null | undefined): string {
