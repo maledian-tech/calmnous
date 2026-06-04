@@ -92,9 +92,9 @@ export default async function HomePage() {
     <main className="min-h-screen bg-background">
       <LovableSiteHeader logoSrc={logoSrc} bookingHref={bookingHref} />
       <LovableHero bookingHref={bookingHref} />
-      <LovablePhilosophy />
+      <LovablePhilosophy readMoreHref="/philosophy" />
       <LovableServices items={serviceItems} />
-      <LovableAbout photoSrc={aboutPhotoSrc} />
+      <LovableAbout photoSrc={aboutPhotoSrc} readMoreHref="/about" />
       <LovableApproach />
       <LovableContact bookingHref={bookingHref} />
       <LovableSiteFooter logoSrc={logoSrc} />
