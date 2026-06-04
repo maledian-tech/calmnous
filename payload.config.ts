@@ -293,7 +293,7 @@ export default buildConfig({
         pool: {
           connectionString: postgresPoolConnectionString(databaseUrl),
         },
-        prodMigrations: postgresProdMigrations,
+        push: true,
       })
     : sqliteAdapter({
         client: {
