@@ -10,3 +10,16 @@ export function resolvePublicLogoPath(): string | null {
   }
   return null;
 }
+
+const ABOUT_PHOTO_CANDIDATES = [
+  "practice/sotirios-batsos.jpg",
+  "practice/sotirios-batsos.jpeg",
+] as const;
+
+export function resolveAboutPhotoPath(): string | null {
+  for (const name of ABOUT_PHOTO_CANDIDATES) {
+    const full = path.join(process.cwd(), "public", name);
+    if (existsSync(full)) return `/${name}`;
+  }
+  return null;
+}
