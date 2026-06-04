@@ -1,6 +1,4 @@
-import {
-  resolvePublicLogoPath,
-} from "@/lib/resolve-public-paths";
+import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 
 import { LovablePhilosophy } from "@/components/lovable/LovablePhilosophy";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
