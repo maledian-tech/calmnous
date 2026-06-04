@@ -1,12 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 
 type Props = {
   photoSrc?: string | null;
+  readMoreHref?: string;
 };
 
-export function LovableAbout({ photoSrc }: Props) {
+export function LovableAbout({ photoSrc, readMoreHref }: Props) {
   return (
     <section id="about" className="px-6 py-40 md:px-16">
       <div className="grid items-center gap-12 md:grid-cols-12">
@@ -72,6 +74,17 @@ export function LovableAbout({ photoSrc }: Props) {
               </div>
             ))}
           </div>
+          {readMoreHref && (
+            <div className="mt-10">
+              <Link
+                href={readMoreHref}
+                className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Read more
+                <span className="h-px w-6 bg-accent transition-all duration-300 group-hover:w-10" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>
