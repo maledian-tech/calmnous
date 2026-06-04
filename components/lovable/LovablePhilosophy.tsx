@@ -1,6 +1,12 @@
+import Link from "next/link";
+
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 
-export function LovablePhilosophy() {
+type Props = {
+  readMoreHref?: string;
+};
+
+export function LovablePhilosophy({ readMoreHref }: Props) {
   return (
     <section id="philosophy" className="relative overflow-hidden px-6 py-40 md:px-16">
       <WaveDecoration className="absolute bottom-0 left-0 right-0 h-28" />
@@ -32,6 +38,15 @@ export function LovablePhilosophy() {
             &ldquo;We work with what you actually carry — not the polished
             version.&rdquo;
           </p>
+          {readMoreHref && (
+            <Link
+              href={readMoreHref}
+              className="group inline-flex items-center gap-3 pt-2 text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
+            >
+              Read more
+              <span className="h-px w-6 bg-accent transition-all duration-300 group-hover:w-10" />
+            </Link>
+          )}
         </div>
       </div>
     </section>
