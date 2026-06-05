@@ -1,3 +1,5 @@
+import { FadeUp } from "@/components/Motion";
+
 const steps = [
   {
     number: "01",
@@ -19,7 +21,7 @@ const steps = [
 export function PhilosophyProcess() {
   return (
     <section className="border-t border-border px-6 py-24 md:px-16">
-      <div className="mb-14">
+      <FadeUp className="mb-14">
         <div className="mb-6 flex items-center gap-3">
           <div className="h-px w-8 bg-accent" />
           <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
@@ -29,14 +31,14 @@ export function PhilosophyProcess() {
         <h2 className="font-serif text-4xl leading-tight text-primary md:text-5xl">
           What the work looks like.
         </h2>
-      </div>
+      </FadeUp>
       <div className="grid gap-10 md:grid-cols-3">
-        {steps.map((s) => (
-          <div key={s.number}>
+        {steps.map((s, i) => (
+          <FadeUp key={s.number} delay={i * 0.1}>
             <div className="mb-4 font-serif text-5xl text-primary/20">{s.number}</div>
             <h3 className="mb-3 font-serif text-2xl text-primary">{s.title}</h3>
             <p className="font-light leading-relaxed text-foreground/75">{s.body}</p>
-          </div>
+          </FadeUp>
         ))}
       </div>
     </section>

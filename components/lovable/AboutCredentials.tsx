@@ -1,3 +1,5 @@
+import { FadeUp } from "@/components/Motion";
+
 export function AboutCredentials() {
   const bacpLogo =
     process.env.NEXT_PUBLIC_BACP_LOGO_SRC?.trim() ||
@@ -10,7 +12,7 @@ export function AboutCredentials() {
   return (
     <section className="border-t border-border px-6 py-24 md:px-16">
       <div className="grid gap-16 md:grid-cols-12">
-        <div className="md:col-span-4">
+        <FadeUp className="md:col-span-4">
           <div className="mb-6 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
             <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
@@ -20,8 +22,8 @@ export function AboutCredentials() {
           <h2 className="font-serif text-4xl leading-tight text-primary md:text-5xl">
             Grounded in rigorous training.
           </h2>
-        </div>
-        <div className="md:col-span-7 md:col-start-6">
+        </FadeUp>
+        <FadeUp delay={0.1} className="md:col-span-7 md:col-start-6">
           <ul className="space-y-5 font-light leading-relaxed text-foreground/80">
             {[
               "MSc in Integrative Psychotherapy and Counselling",
@@ -77,7 +79,7 @@ export function AboutCredentials() {
               </a>
             </div>
           </div>
-        </div>
+        </FadeUp>
       </div>
     </section>
   );
