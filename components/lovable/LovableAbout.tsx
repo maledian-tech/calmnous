@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { FadeUp } from "@/components/Motion";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 
 type Props = {
@@ -12,7 +13,7 @@ export function LovableAbout({ photoSrc, readMoreHref }: Props) {
   return (
     <section id="about" className="px-6 py-40 md:px-16">
       <div className="grid items-center gap-12 md:grid-cols-12">
-        <div className="md:col-span-4">
+        <FadeUp className="md:col-span-4">
           <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-secondary shadow-[var(--shadow-soft)]">
             {photoSrc ? (
               <Image
@@ -37,18 +38,20 @@ export function LovableAbout({ photoSrc, readMoreHref }: Props) {
               </p>
             </div>
           </div>
-        </div>
+        </FadeUp>
         <div className="md:col-span-7 md:col-start-6">
-          <div className="mb-6 flex items-center gap-3">
-            <div className="h-px w-8 bg-accent" />
-            <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">
-              About
-            </span>
-          </div>
-          <h2 className="mb-8 font-serif text-4xl leading-tight text-primary md:text-5xl">
-            A practice built on listening — closely, and without hurry.
-          </h2>
-          <div className="space-y-5 font-light leading-relaxed text-foreground/80">
+          <FadeUp delay={0.1}>
+            <div className="mb-6 flex items-center gap-3">
+              <div className="h-px w-8 bg-accent" />
+              <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">
+                About
+              </span>
+            </div>
+            <h2 className="mb-8 font-serif text-4xl leading-tight text-primary md:text-5xl">
+              A practice built on listening — closely, and without hurry.
+            </h2>
+          </FadeUp>
+          <FadeUp delay={0.2} className="space-y-5 font-light leading-relaxed text-foreground/80">
             <p>
               Sotirios Batsos is an integrative counsellor and psychotherapist
               with over a decade of clinical experience. He works with adults,
@@ -59,8 +62,8 @@ export function LovableAbout({ photoSrc, readMoreHref }: Props) {
               His approach is warm, considered, and grounded — combining
               classical depth work with contemporary, evidence-based methods.
             </p>
-          </div>
-          <div className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
+          </FadeUp>
+          <FadeUp delay={0.3} className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
             {[
               { k: "10+", v: "Years in mental health" },
               { k: "Hundreds", v: "Lives walked alongside" },
@@ -73,9 +76,9 @@ export function LovableAbout({ photoSrc, readMoreHref }: Props) {
                 </div>
               </div>
             ))}
-          </div>
+          </FadeUp>
           {readMoreHref && (
-            <div className="mt-10">
+            <FadeUp delay={0.4} className="mt-10">
               <Link
                 href={readMoreHref}
                 className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
@@ -83,7 +86,7 @@ export function LovableAbout({ photoSrc, readMoreHref }: Props) {
                 Read more
                 <span className="h-px w-6 bg-accent transition-all duration-300 group-hover:w-10" />
               </Link>
-            </div>
+            </FadeUp>
           )}
         </div>
       </div>
