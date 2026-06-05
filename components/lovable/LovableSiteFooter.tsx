@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/components/LanguageProvider";
 
 type Props = {
   logoSrc: string | null;
@@ -45,6 +48,7 @@ function IconInstagram({ className }: { className?: string }) {
 }
 
 export function LovableSiteFooter({ logoSrc }: Props) {
+  const { language } = useLanguage();
   const email =
     process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "hello@calmnous.com";
   const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() || "";
@@ -204,7 +208,51 @@ export function LovableSiteFooter({ logoSrc }: Props) {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="mt-12 border-t border-border pt-8">
+          {language === "en" ? (
+            <p className="text-xs text-muted-foreground">
+              <span className="font-medium">If you are in crisis:</span>{" "}
+              Samaritans (UK) ·{" "}
+              <a
+                href="tel:116123"
+                className="font-medium transition-colors hover:text-primary"
+              >
+                116 123
+              </a>{" "}
+              · Free, 24/7 ·{" "}
+              <a
+                href="https://www.samaritans.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 transition-colors hover:text-primary"
+              >
+                samaritans.org
+              </a>
+            </p>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              <span className="font-medium">Αν βρίσκεσαι σε κρίση:</span>{" "}
+              Γραμμή SOS Δίπλα Σου ·{" "}
+              <a
+                href="tel:1018"
+                className="font-medium transition-colors hover:text-primary"
+              >
+                1018
+              </a>{" "}
+              · Δωρεάν, 24 ώρες ·{" "}
+              <a
+                href="https://www.psy-dds.gr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 transition-colors hover:text-primary"
+              >
+                psy-dds.gr
+              </a>
+            </p>
+          )}
+        </div>
+
+        <div className="mt-6 flex flex-col gap-4 text-center md:flex-row md:items-center md:justify-between md:text-left">
           <p className="text-xs font-light text-muted-foreground">
             © {year} Sotirios Batsos · Calmnous · Integrative counselling &amp;
             psychotherapy
