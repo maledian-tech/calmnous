@@ -1,8 +1,8 @@
 import Link from "next/link";
 
+import { FadeIn } from "@/components/Motion";
 import { Button } from "@/components/ui/button";
 
-// YouTube video ID — hardcoded, no env var needed
 const YT_ID = "1P0-EY-jRjk";
 const YT_EMBED = `https://www.youtube.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&playsinline=1&rel=0&modestbranding=1&disablekb=1`;
 
@@ -27,10 +27,8 @@ function BookConsultationButton({
 export function LovableHero({ bookingHref }: Props) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Static fallback — always visible, ensures hero is never blank */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70" />
 
-      {/* YouTube background — desktop only; autoplay blocked on mobile */}
       <div className="absolute inset-0 hidden overflow-hidden md:block">
         <iframe
           src={YT_EMBED}
@@ -51,22 +49,26 @@ export function LovableHero({ bookingHref }: Props) {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/40" />
 
       <div className="relative z-10 flex min-h-screen items-end px-6 pb-24 md:px-16 md:pb-32">
-        <div className="animate-fade-up max-w-2xl text-primary-foreground">
-          <div className="mb-8 flex items-center gap-3">
+        <div className="max-w-2xl text-primary-foreground">
+          <FadeIn delay={0.1} className="mb-8 flex items-center gap-3">
             <div className="h-px w-10 bg-accent" />
             <span className="text-xs uppercase tracking-[0.25em] text-accent">
               Integrative Counselling &amp; Psychotherapy
             </span>
-          </div>
-          <h1 className="mb-8 font-serif text-5xl leading-[1.05] text-balance md:text-7xl">
-            A quiet space to think, feel, and find your way.
-          </h1>
-          <p className="mb-10 max-w-xl text-lg font-light leading-relaxed text-primary-foreground/85 md:text-xl">
-            Calmnous offers thoughtful, confidential therapy with Sotirios Batsos
-            — an integrative psychotherapist who works with what you actually
-            carry, not the polished version.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <h1 className="mb-8 font-serif text-5xl leading-[1.05] text-balance md:text-7xl">
+              A quiet space to think, feel, and find your way.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.5}>
+            <p className="mb-10 max-w-xl text-lg font-light leading-relaxed text-primary-foreground/85 md:text-xl">
+              Calmnous offers thoughtful, confidential therapy with Sotirios Batsos
+              — an integrative psychotherapist who works with what you actually
+              carry, not the polished version.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.65} className="flex flex-wrap items-center gap-4">
             <BookConsultationButton
               bookingHref={bookingHref}
               className="rounded-full bg-background px-8 text-primary hover:bg-background/90"
@@ -77,7 +79,7 @@ export function LovableHero({ bookingHref }: Props) {
             >
               Browse services
             </Link>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </section>

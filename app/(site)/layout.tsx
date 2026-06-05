@@ -1,4 +1,5 @@
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { SiteTransition } from "@/components/SiteTransition";
 
 export default function SiteLayout({
   children,
@@ -7,9 +8,7 @@ export default function SiteLayout({
 }>) {
   return (
     <LanguageProvider>
-      <div className="flex min-h-full flex-col bg-background text-foreground">
-        {children}
-      </div>
+      <SiteTransition>{children}</SiteTransition>
     </LanguageProvider>
   );
 }
