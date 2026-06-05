@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/Motion";
 import { Button } from "@/components/ui/button";
 
 const YT_ID = "1P0-EY-jRjk";
-const YT_EMBED = `https://www.youtube.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&playsinline=1&rel=0&modestbranding=1&disablekb=1`;
+const YT_EMBED = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&playsinline=1&rel=0&disablekb=1`;
 
 type Props = {
   bookingHref: string | null;
