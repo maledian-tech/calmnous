@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 type Props = {
@@ -10,8 +11,13 @@ type Props = {
 
 export function FadeUp({ children, delay = 0, className }: Props) {
   const reduced = useReducedMotion();
+  const [ready, setReady] = useState(false);
 
-  if (reduced) {
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
+  if (reduced || !ready) {
     return <div className={className}>{children}</div>;
   }
 
@@ -30,8 +36,13 @@ export function FadeUp({ children, delay = 0, className }: Props) {
 
 export function FadeIn({ children, delay = 0, className }: Props) {
   const reduced = useReducedMotion();
+  const [ready, setReady] = useState(false);
 
-  if (reduced) {
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
+  if (reduced || !ready) {
     return <div className={className}>{children}</div>;
   }
 
