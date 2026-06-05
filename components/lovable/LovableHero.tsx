@@ -3,9 +3,6 @@ import Link from "next/link";
 import { FadeIn } from "@/components/Motion";
 import { Button } from "@/components/ui/button";
 
-const YT_ID = "1P0-EY-jRjk";
-const YT_EMBED = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&playlist=${YT_ID}&controls=0&playsinline=1&rel=0&disablekb=1`;
-
 type Props = {
   bookingHref: string | null;
 };
@@ -30,17 +27,13 @@ export function LovableHero({ bookingHref }: Props) {
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70" />
 
       <div className="absolute inset-0 hidden overflow-hidden md:block">
-        <iframe
-          src={YT_EMBED}
-          title="Background video"
-          allow="autoplay; encrypted-media"
-          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
-          style={{
-            width: "max(100%, calc(100vh * 16 / 9))",
-            height: "max(100%, calc(100vw * 9 / 16))",
-            minWidth: "100%",
-            minHeight: "100%",
-          }}
+        <video
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-h-full min-w-full object-cover"
           aria-hidden="true"
         />
       </div>
