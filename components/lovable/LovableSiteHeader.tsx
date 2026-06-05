@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useLanguage } from "@/components/LanguageProvider";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -19,6 +20,8 @@ type Props = {
 
 export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
@@ -29,7 +32,7 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
   const ctaHref = bookingHref ?? "/book";
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-6 py-4 md:px-16 md:py-5">
+    <header className="fixed left-0 right-0 top-0 z-50 px-6 py-3 md:px-16 md:py-4">
       <div
         className={`rounded-full border border-border/70 backdrop-blur-md transition-all duration-500 ${
           scrolled
@@ -37,7 +40,7 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
             : "bg-background/88"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-2.5 md:px-10 md:py-3">
+        <div className="flex items-center justify-between px-6 py-1.5 md:px-10 md:py-2">
           <Link href="/" className="flex items-center gap-2.5">
             {logoSrc ? (
               <Image
@@ -49,7 +52,7 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
                 priority
               />
             ) : null}
-            <span className="font-serif text-2xl font-bold tracking-tight text-primary">
+            <span className="font-serif text-2xl font-extrabold tracking-tight text-primary drop-shadow-sm">
               Calmnous
             </span>
           </Link>
@@ -65,18 +68,43 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
               </Link>
             ))}
           </nav>
-          <Button
-            asChild
-            className="rounded-full bg-primary px-5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary/90"
-          >
-            {ctaHref.startsWith("http") ? (
-              <a href={ctaHref} target="_blank" rel="noopener noreferrer">
-                Book a session
-              </a>
-            ) : (
-              <Link href={ctaHref}>Book a session</Link>
-            )}
-          </Button>
+          <div className="flex items-center gap-4">
+            <div className="hidden items-center gap-2 md:flex">
+              <button
+                onClick={() => setLanguage("en")}
+                className={`flex items-center gap-1 text-xs uppercase tracking-widest transition-colors ${
+                  language === "en"
+                    ? "border-b border-accent font-semibold text-primary"
+                    : "text-muted-foreground hover:text-primary"
+                }`}
+              >
+                🇬🇧 EN
+              </button>
+              <span className="text-muted-foreground/40">|</span>
+              <button
+                onClick={() => setLanguage("gr")}
+                className={`flex items-center gap-1 text-xs uppercase tracking-widest transition-colors ${
+                  language === "gr"
+                    ? "border-b border-accent font-semibold text-primary"
+                    : "text-muted-foreground hover:text-primary"
+                }`}
+              >
+                🇬🇷 GR
+              </button>
+            </div>
+            <Button
+              asChild
+              className="rounded-full bg-primary px-5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary/90"
+            >
+              {ctaHref.startsWith("http") ? (
+                <a href={ctaHref} target="_blank" rel="noopener noreferrer">
+                  Book a session
+                </a>
+              ) : (
+                <Link href={ctaHref}>Book a session</Link>
+              )}
+            </Button>
+          </div>
         </div>
       </div>
     </header>
