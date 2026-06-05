@@ -32,7 +32,7 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
   const ctaHref = bookingHref ?? "/book";
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-6 py-3 md:px-16 md:py-4">
+    <header className="fixed left-0 right-0 top-0 z-50 px-4 py-2 md:px-12 md:py-3">
       <div
         className={`rounded-full border border-border/70 backdrop-blur-md transition-all duration-500 ${
           scrolled
@@ -40,15 +40,15 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
             : "bg-background/88"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-1.5 md:px-10 md:py-2">
-          <Link href="/" className="flex items-center gap-2.5">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 py-1 md:px-6 md:py-1.5">
+          <Link href="/" className="flex items-center gap-2.5 justify-self-start">
             {logoSrc ? (
               <Image
                 src={logoSrc}
                 alt="Calmnous logo"
                 width={176}
                 height={40}
-                className="h-9 w-auto rounded"
+                className="h-8 w-auto rounded"
                 priority
               />
             ) : null}
@@ -68,28 +68,27 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
-            <div className="hidden items-center gap-2 md:flex">
+          <div className="flex items-center gap-3 justify-self-end">
+            <div className="hidden items-center rounded-full border border-border/60 p-0.5 md:flex">
               <button
                 onClick={() => setLanguage("en")}
-                className={`flex items-center gap-1 text-xs uppercase tracking-widest transition-colors ${
+                className={`rounded-full px-2.5 py-0.5 text-xs uppercase tracking-widest transition-all ${
                   language === "en"
-                    ? "border-b border-accent font-semibold text-primary"
-                    : "text-muted-foreground hover:text-primary"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                🇬🇧 EN
+                EN
               </button>
-              <span className="text-muted-foreground/40">|</span>
               <button
                 onClick={() => setLanguage("gr")}
-                className={`flex items-center gap-1 text-xs uppercase tracking-widest transition-colors ${
+                className={`rounded-full px-2.5 py-0.5 text-xs uppercase tracking-widest transition-all ${
                   language === "gr"
-                    ? "border-b border-accent font-semibold text-primary"
-                    : "text-muted-foreground hover:text-primary"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                🇬🇷 GR
+                EL
               </button>
             </div>
             <Button
