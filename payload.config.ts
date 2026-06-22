@@ -127,6 +127,22 @@ const Services: CollectionConfig = {
       required: true,
     },
     {
+      name: 'subItems',
+      type: 'array',
+      labels: { singular: 'Sub-item', plural: 'Sub-items' },
+      admin: {
+        description:
+          'Short bullet points shown under this service on the homepage.',
+      },
+      fields: [
+        {
+          name: 'text',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
       name: 'coverImage',
       type: 'upload',
       relationTo: 'media',

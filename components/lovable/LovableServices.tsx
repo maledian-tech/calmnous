@@ -4,6 +4,7 @@ export type LovableServiceRow = {
   id: string | number;
   title: string;
   summary: string;
+  subItems?: string[];
 };
 
 type Props = {
@@ -48,9 +49,19 @@ export function LovableServices({ items }: Props) {
                     <p className="max-w-md font-light leading-relaxed text-foreground/75">
                       {s.summary}
                     </p>
-                    <div className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                      Learn more <span className="h-px w-6 bg-accent" />
-                    </div>
+                    {s.subItems && s.subItems.length > 0 ? (
+                      <ul className="mt-6 flex max-w-md flex-col gap-3">
+                        {s.subItems.map((item, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-3 text-sm font-light leading-relaxed text-foreground/80"
+                          >
+                            <span className="mt-2 h-px w-5 shrink-0 bg-accent" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </div>
                 </FadeUp>
               );

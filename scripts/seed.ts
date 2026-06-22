@@ -1,6 +1,7 @@
 /**
- * Seeds sample services into Payload (SQLite/DB from env).
- * Idempotent: skips slugs that already exist.
+ * Seeds the homepage services into Payload (SQLite/DB from env).
+ * Reconciling: removes obsolete sample slugs, then upserts the current set
+ * (creating missing ones, updating existing ones so reruns stay in sync).
  * New services get a cover image from existing public assets (replace in admin).
  *
  * Usage: npm run seed
@@ -14,49 +15,38 @@ import { getPayload } from 'payload'
 import config from '../payload.config.ts'
 
 const COVER_PATH_BY_SLUG: Record<string, string> = {
-  'individual-therapy': join(process.cwd(), 'public/hero/hero-poster.jpg'),
-  'couples-relationship-counselling': join(
-    process.cwd(),
-    'public/practice/midpage-default.jpg',
-  ),
-  'walk-and-talk-sessions': join(process.cwd(), 'public/hero/hero-poster.jpg'),
-  'short-term-counselling': join(
-    process.cwd(),
-    'public/practice/midpage-default.jpg',
-  ),
+  'face-to-face': join(process.cwd(), 'public/hero/hero-poster.jpg'),
+  online: join(process.cwd(), 'public/practice/midpage-default.jpg'),
 }
+
+/** Old sample slugs to remove so a reseed reconciles to the current set. */
+const OBSOLETE_SLUGS = [
+  'individual-therapy',
+  'couples-relationship-counselling',
+  'walk-and-talk-sessions',
+  'short-term-counselling',
+] as const
 
 const SAMPLE_SERVICES = [
   {
-    title: 'Individual therapy',
-    slug: 'individual-therapy',
+    title: 'Face to face',
+    slug: 'face-to-face',
     summary:
-      'A steady, confidential rhythm for unpacking stress, burnout, grief, spirals of worry, identity shifts—or simply life feeling louder than usual.',
+      'In-person sessions in a calm, confidential setting — meeting together in the same room, at a pace that lets trust build.',
+    subItems: [
+      'Based in Northamptonshire — or meet in person anywhere by arrangement',
+      'Walk-and-talk sessions, where gentle movement outdoors makes room for what is hard to say',
+    ],
     sortOrder: 10,
     published: true as const,
   },
   {
-    title: 'Couples & relationship counselling',
-    slug: 'couples-relationship-counselling',
+    title: 'Online',
+    slug: 'online',
     summary:
-      'Conversations crafted to soften defensiveness, rebuild understanding, and help you practise new patterns with care—without rushing repair.',
+      'Secure video sessions from wherever you feel most at ease — the same steady, confidential support, without the travel.',
+    subItems: ['Available anywhere in the EU & UK'],
     sortOrder: 20,
-    published: true as const,
-  },
-  {
-    title: 'Walk-and-talk sessions',
-    slug: 'walk-and-talk-sessions',
-    summary:
-      'When sitting still feels too loaded, gentle movement outdoors can soften edges and make room for what is hard to say face-to-face in a clinic room.',
-    sortOrder: 30,
-    published: true as const,
-  },
-  {
-    title: 'Short-term counselling',
-    slug: 'short-term-counselling',
-    summary:
-      'Structured support with a clearer arc—often useful during transitions like relocation, new parenting, career change, or post-treatment recovery.',
-    sortOrder: 40,
     published: true as const,
   },
 ] as const
@@ -70,10 +60,22 @@ async function main() {
 
   const payload = await getPayload({ config })
 
+  // Remove obsolete sample services so the homepage reconciles to the new set.
+  let removed = 0
+  for (const slug of OBSOLETE_SLUGS) {
+    const res = await payload.delete({
+      collection: 'services',
+      where: { slug: { equals: slug } },
+    })
+    removed += res.docs.length
+  }
+
   let created = 0
-  let skipped = 0
+  let updated = 0
 
   for (const row of SAMPLE_SERVICES) {
+    const subItems = row.subItems.map((text) => ({ text }))
+
     const existing = await payload.find({
       collection: 'services',
       where: { slug: { equals: row.slug } },
@@ -81,7 +83,18 @@ async function main() {
     })
 
     if (existing.docs.length > 0) {
-      skipped += 1
+      await payload.update({
+        collection: 'services',
+        id: existing.docs[0].id,
+        data: {
+          title: row.title,
+          summary: row.summary,
+          subItems,
+          sortOrder: row.sortOrder,
+          published: row.published,
+        },
+      })
+      updated += 1
       continue
     }
 
@@ -114,6 +127,7 @@ async function main() {
         title: row.title,
         slug: row.slug,
         summary: row.summary,
+        subItems,
         sortOrder: row.sortOrder,
         published: row.published,
         ...(coverId !== undefined ? { coverImage: coverId } : {}),
@@ -123,7 +137,7 @@ async function main() {
   }
 
   console.log(
-    `[seed] services: ${created} created, ${skipped} already present (${SAMPLE_SERVICES.length} definitions).`,
+    `[seed] services: ${created} created, ${updated} updated, ${removed} obsolete removed (${SAMPLE_SERVICES.length} definitions).`,
   )
 
   await payload.destroy()

@@ -17,9 +17,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Calmnous | Integrative counselling & psychotherapy",
+  title: {
+    default:
+      "Calmnous | Integrative counselling & psychotherapy by Sotirios Batsos",
+    template: "%s | Calmnous — Sotirios Batsos",
+  },
   description:
-    "Calmnous provides integrative counselling and psychotherapy in a calm, respectful space tailored to your needs.",
+    "Calmnous is the integrative counselling and psychotherapy practice of Sotirios Batsos — a calm, respectful space, in person in Northamptonshire and online across the EU & UK.",
+  applicationName: "Calmnous",
+  authors: [{ name: "Sotirios Batsos" }],
+  creator: "Sotirios Batsos",
+  publisher: "Sotirios Batsos",
+  openGraph: {
+    title:
+      "Calmnous | Integrative counselling & psychotherapy by Sotirios Batsos",
+    description:
+      "Integrative counselling and psychotherapy with Sotirios Batsos — in person in Northamptonshire and online across the EU & UK.",
+    siteName: "Calmnous",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -178,6 +178,15 @@ export interface Service {
   slug: string;
   summary: string;
   /**
+   * Short bullet points shown under this service on the homepage.
+   */
+  subItems?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
    * Photo or illustration for the homepage services list.
    */
   coverImage?: (number | null) | Media;
@@ -384,6 +393,12 @@ export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   summary?: T;
+  subItems?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
   coverImage?: T;
   details?: T;
   sortOrder?: T;

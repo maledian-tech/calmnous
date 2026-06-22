@@ -47,6 +47,87 @@ function IconInstagram({ className }: { className?: string }) {
   );
 }
 
+function IconLifeBuoy({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="4" />
+      <line x1="4.93" x2="9.17" y1="4.93" y2="9.17" />
+      <line x1="14.83" x2="19.07" y1="14.83" y2="19.07" />
+      <line x1="14.83" x2="19.07" y1="9.17" y2="4.93" />
+      <line x1="4.93" x2="9.17" y1="19.07" y2="14.83" />
+    </svg>
+  );
+}
+
+/** Prominent, language-aware crisis helpline band shown at the top of the footer. */
+function CrisisBand({ language }: { language: "en" | "gr" }) {
+  return (
+    <div className="mb-12 rounded-2xl border border-accent/40 bg-accent/10 px-5 py-5 md:px-8 md:py-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+        <span className="text-accent">
+          <IconLifeBuoy className="size-6" />
+        </span>
+        {language === "en" ? (
+          <p className="text-sm leading-relaxed text-foreground/90">
+            <span className="font-semibold text-primary">
+              If you are in crisis:
+            </span>{" "}
+            Samaritans (UK) ·{" "}
+            <a
+              href="tel:116123"
+              className="font-semibold underline underline-offset-2 transition-colors hover:text-primary"
+            >
+              116 123
+            </a>{" "}
+            · Free, 24/7 ·{" "}
+            <a
+              href="https://www.samaritans.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 transition-colors hover:text-primary"
+            >
+              samaritans.org
+            </a>
+          </p>
+        ) : (
+          <p className="text-sm leading-relaxed text-foreground/90">
+            <span className="font-semibold text-primary">
+              Αν βρίσκεσαι σε κρίση:
+            </span>{" "}
+            Γραμμή SOS Δίπλα Σου ·{" "}
+            <a
+              href="tel:1018"
+              className="font-semibold underline underline-offset-2 transition-colors hover:text-primary"
+            >
+              1018
+            </a>{" "}
+            · Δωρεάν, 24 ώρες ·{" "}
+            <a
+              href="https://www.psy-dds.gr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 transition-colors hover:text-primary"
+            >
+              psy-dds.gr
+            </a>
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function LovableSiteFooter({ logoSrc }: Props) {
   const { language } = useLanguage();
   const email =
@@ -73,6 +154,7 @@ export function LovableSiteFooter({ logoSrc }: Props) {
   return (
     <footer className="border-t border-border bg-secondary/40 px-6 py-14 md:px-16 md:py-16">
       <div>
+        <CrisisBand language={language} />
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <Link
@@ -93,8 +175,11 @@ export function LovableSiteFooter({ logoSrc }: Props) {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
-              Integrative counselling and psychotherapy in a calm, confidential
-              space — in person and online.
+              Integrative counselling and psychotherapy by{" "}
+              <span className="font-medium text-foreground/80">
+                Sotirios Batsos
+              </span>{" "}
+              — a calm, confidential space, in person and online.
             </p>
           </div>
 
@@ -208,54 +293,11 @@ export function LovableSiteFooter({ logoSrc }: Props) {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8">
-          {language === "en" ? (
-            <p className="text-xs text-muted-foreground">
-              <span className="font-medium">If you are in crisis:</span>{" "}
-              Samaritans (UK) ·{" "}
-              <a
-                href="tel:116123"
-                className="font-medium transition-colors hover:text-primary"
-              >
-                116 123
-              </a>{" "}
-              · Free, 24/7 ·{" "}
-              <a
-                href="https://www.samaritans.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-2 transition-colors hover:text-primary"
-              >
-                samaritans.org
-              </a>
-            </p>
-          ) : (
-            <p className="text-xs text-muted-foreground">
-              <span className="font-medium">Αν βρίσκεσαι σε κρίση:</span>{" "}
-              Γραμμή SOS Δίπλα Σου ·{" "}
-              <a
-                href="tel:1018"
-                className="font-medium transition-colors hover:text-primary"
-              >
-                1018
-              </a>{" "}
-              · Δωρεάν, 24 ώρες ·{" "}
-              <a
-                href="https://www.psy-dds.gr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-2 transition-colors hover:text-primary"
-              >
-                psy-dds.gr
-              </a>
-            </p>
-          )}
-        </div>
-
-        <div className="mt-6 flex flex-col gap-4 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8 text-center md:flex-row md:items-center md:justify-between md:text-left">
           <p className="text-xs font-light text-muted-foreground">
-            © {year} Sotirios Batsos · Calmnous · Integrative counselling &amp;
-            psychotherapy
+            © {year} <span className="font-medium text-foreground/80">Calmnous</span> —
+            integrative counselling &amp; psychotherapy by{" "}
+            <span className="font-medium text-foreground/80">Sotirios Batsos</span>
           </p>
           <p className="text-[0.65rem] font-medium uppercase tracking-wider text-muted-foreground/90">
             Confidentiality · Athens &amp; online

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/components/LanguageProvider";
 import { Button } from "@/components/ui/button";
@@ -13,14 +13,132 @@ const links = [
   { label: "Journal", href: "/journal" },
 ] as const;
 
+const LANGUAGES = [
+  { code: "en", label: "EN", name: "English" },
+  { code: "gr", label: "EL", name: "Ελληνικά" },
+] as const;
+
 type Props = {
   logoSrc: string | null;
   bookingHref: string | null;
 };
 
+/** Brand wave mark — kept vibrant with a primary→accent gradient fill. */
+function WaveMark({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 40 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="calmnous-wave-grad" x1="0" y1="0" x2="40" y2="28">
+          <stop offset="0%" stopColor="hsl(var(--primary))" />
+          <stop offset="100%" stopColor="hsl(var(--accent))" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M2 18c5-9 11-9 16 0s11 9 16 0"
+        stroke="url(#calmnous-wave-grad)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M2 9c5-9 11-9 16 0s11 9 16 0"
+        stroke="url(#calmnous-wave-grad)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        opacity="0.45"
+      />
+    </svg>
+  );
+}
+
+function LanguageDropdown() {
+  const { language, setLanguage } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointer = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const active = LANGUAGES.find((l) => l.code === language) ?? LANGUAGES[0];
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label="Change language"
+        className="flex items-center gap-1.5 rounded-full border border-border/60 px-3 py-1 text-xs uppercase tracking-widest text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+      >
+        {active.label}
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`size-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      {open ? (
+        <ul
+          role="listbox"
+          className="absolute right-0 top-full z-50 mt-2 min-w-[8rem] overflow-hidden rounded-2xl border border-border/70 bg-background/95 p-1 shadow-[var(--shadow-float)] backdrop-blur-md"
+        >
+          {LANGUAGES.map((l) => (
+            <li key={l.code} role="option" aria-selected={l.code === language}>
+              <button
+                type="button"
+                onClick={() => {
+                  setLanguage(l.code);
+                  setOpen(false);
+                }}
+                className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm transition-colors ${
+                  l.code === language
+                    ? "bg-primary text-primary-foreground"
+                    : "text-foreground hover:bg-secondary"
+                }`}
+              >
+                <span className="font-medium">{l.name}</span>
+                <span className="text-xs uppercase tracking-widest opacity-70">
+                  {l.label}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -41,18 +159,23 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
         }`}
       >
         <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 py-1 md:px-6 md:py-1.5">
-          <Link href="/" className="flex items-center gap-2.5 justify-self-start">
+          <Link
+            href="/"
+            className="group flex items-center gap-2.5 justify-self-start"
+          >
             {logoSrc ? (
               <Image
                 src={logoSrc}
                 alt="Calmnous logo"
                 width={176}
-                height={40}
-                className="h-8 w-auto rounded"
+                height={44}
+                className="h-9 w-auto rounded-md ring-1 ring-primary/10"
                 priority
               />
-            ) : null}
-            <span className="font-serif text-2xl font-extrabold tracking-tight text-primary drop-shadow-sm">
+            ) : (
+              <WaveMark className="h-7 w-auto transition-transform duration-300 group-hover:scale-105" />
+            )}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text font-serif text-[1.7rem] font-extrabold leading-none tracking-tight text-transparent drop-shadow-sm">
               Calmnous
             </span>
           </Link>
@@ -69,28 +192,7 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
             ))}
           </nav>
           <div className="flex items-center gap-3 justify-self-end">
-            <div className="hidden items-center rounded-full border border-border/60 p-0.5 md:flex">
-              <button
-                onClick={() => setLanguage("en")}
-                className={`rounded-full px-2.5 py-0.5 text-xs uppercase tracking-widest transition-all ${
-                  language === "en"
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => setLanguage("gr")}
-                className={`rounded-full px-2.5 py-0.5 text-xs uppercase tracking-widest transition-all ${
-                  language === "gr"
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                EL
-              </button>
-            </div>
+            <LanguageDropdown />
             <Button
               asChild
               className="rounded-full bg-primary px-5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary/90"

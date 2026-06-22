@@ -84,6 +84,9 @@ export default async function HomePage() {
     id: doc.id,
     title: doc.title,
     summary: doc.summary,
+    subItems: (doc.subItems ?? [])
+      .map((s) => s.text?.trim())
+      .filter((t): t is string => Boolean(t)),
   }));
 
   const aboutPhotoSrc = resolveAboutPhotoPath();
