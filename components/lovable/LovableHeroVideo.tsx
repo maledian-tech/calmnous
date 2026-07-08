@@ -1,8 +1,13 @@
 import Link from "next/link";
 
 import { FadeIn } from "@/components/Motion";
-import { HeroWavesCanvas } from "@/components/lovable/HeroWavesCanvas";
 import { Button } from "@/components/ui/button";
+
+/*
+ * Stashed video hero — the original full-screen /hero.mp4 hero.
+ * Not currently rendered; swap back in for LovableHero on the home page
+ * if the interactive hero is retired.
+ */
 
 type Props = {
   bookingHref: string | null;
@@ -22,19 +27,27 @@ function BookConsultationButton({
   );
 }
 
-export function LovableHero({ bookingHref }: Props) {
+export function LovableHeroVideo({ bookingHref }: Props) {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-primary">
-      {/* Deep-water gradient: darker at the top, easing toward the surface. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(215_52%_14%)] via-primary to-[hsl(215_46%_27%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,hsl(215_46%_30%/0.55),transparent_60%)]" />
+    <section className="relative min-h-screen w-full overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70" />
 
-      <HeroWavesCanvas />
+      <div className="absolute inset-0 hidden overflow-hidden md:block">
+        <video
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-h-full min-w-full object-cover"
+          aria-hidden="true"
+        />
+      </div>
 
-      {/* Legibility wash behind the copy, fading out to the right. */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[hsl(215_52%_14%/0.72)] via-[hsl(215_52%_14%/0.28)] to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-transparent to-primary/40" />
 
-      <div className="pointer-events-none relative z-10 flex min-h-screen items-end px-6 pb-24 md:px-16 md:pb-32">
+      <div className="relative z-10 flex min-h-screen items-end px-6 pb-24 md:px-16 md:pb-32">
         <div className="max-w-2xl text-primary-foreground">
           <FadeIn delay={0.1} className="mb-8 flex items-center gap-3">
             <div className="h-px w-10 bg-accent" />
@@ -54,10 +67,7 @@ export function LovableHero({ bookingHref }: Props) {
               carry, not the polished version.
             </p>
           </FadeIn>
-          <FadeIn
-            delay={0.65}
-            className="pointer-events-auto flex flex-wrap items-center gap-4"
-          >
+          <FadeIn delay={0.65} className="flex flex-wrap items-center gap-4">
             <BookConsultationButton
               bookingHref={bookingHref}
               className="rounded-full bg-background px-8 text-primary hover:bg-background/90"
