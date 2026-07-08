@@ -23,39 +23,6 @@ type Props = {
   bookingHref: string | null;
 };
 
-/** Brand wave mark — kept vibrant with a primary→accent gradient fill. */
-function WaveMark({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 40 28"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="calmnous-wave-grad" x1="0" y1="0" x2="40" y2="28">
-          <stop offset="0%" stopColor="hsl(var(--primary))" />
-          <stop offset="100%" stopColor="hsl(var(--accent))" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M2 18c5-9 11-9 16 0s11 9 16 0"
-        stroke="url(#calmnous-wave-grad)"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M2 9c5-9 11-9 16 0s11 9 16 0"
-        stroke="url(#calmnous-wave-grad)"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        opacity="0.45"
-      />
-    </svg>
-  );
-}
-
 function LanguageDropdown() {
   const { language, setLanguage } = useLanguage();
   const [open, setOpen] = useState(false);
@@ -152,16 +119,21 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 py-2 md:px-12 md:py-3">
       <div
-        className={`rounded-full border border-border/70 backdrop-blur-md transition-all duration-500 ${
+        className={`relative rounded-full border border-border/70 backdrop-blur-md transition-all duration-500 ${
           scrolled
             ? "bg-background/95 shadow-[var(--shadow-float)]"
             : "bg-background/88"
         }`}
       >
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center px-4 py-1 md:px-6 md:py-1.5">
+        {/* Soft gold wash behind the logo side so the wordmark stands out. */}
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 w-2/5 rounded-l-full bg-gradient-to-r from-accent/25 via-accent/10 to-transparent"
+          aria-hidden
+        />
+        <div className="relative grid grid-cols-[1fr_auto_1fr] items-center px-4 py-1 md:px-6 md:py-1.5">
           <Link
             href="/"
-            className="group flex items-center gap-2.5 justify-self-start"
+            className="group flex items-center justify-self-start"
           >
             {logoSrc ? (
               <Image
@@ -169,13 +141,11 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
                 alt="Calmnous logo"
                 width={176}
                 height={44}
-                className="h-9 w-auto rounded-md ring-1 ring-primary/10"
+                className="mr-2.5 h-9 w-auto rounded-md ring-1 ring-primary/10"
                 priority
               />
-            ) : (
-              <WaveMark className="h-7 w-auto transition-transform duration-300 group-hover:scale-105" />
-            )}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text font-serif text-[1.7rem] font-extrabold leading-none tracking-tight text-transparent drop-shadow-sm">
+            ) : null}
+            <span className="font-serif text-[1.7rem] font-extrabold leading-none tracking-tight text-primary">
               Calmnous
             </span>
           </Link>
