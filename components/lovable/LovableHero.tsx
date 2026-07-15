@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 
+import { useLanguage } from "@/components/LanguageProvider";
 import { FadeIn } from "@/components/Motion";
 import { HeroWavesCanvas } from "@/components/lovable/HeroWavesCanvas";
 import { Button } from "@/components/ui/button";
@@ -8,21 +11,43 @@ type Props = {
   bookingHref: string | null;
 };
 
+const copy = {
+  en: {
+    eyebrow: "Integrative Counselling & Psychotherapy",
+    heading: "Therapy that meets you beneath the surface.",
+    body: "Whether you are facing a challenge or seeking a deeper understanding of yourself, Calmnous offers a calm space to reflect and move forward with greater clarity. Therapy is offered by integrative counsellor and psychotherapist Sotirios Batsos.",
+    book: "Book a consultation",
+    help: "How I can help",
+  },
+  gr: {
+    eyebrow: "Ολιστική Συμβουλευτική & Ψυχοθεραπεία",
+    heading: "Ψυχοθεραπεία που σε συναντά κάτω από την επιφάνεια.",
+    body: "Είτε αντιμετωπίζεις μια δυσκολία είτε αναζητάς μια βαθύτερη κατανόηση του εαυτού σου, το Calmnous προσφέρει έναν ήρεμο χώρο για να στοχαστείς και να προχωρήσεις με μεγαλύτερη διαύγεια. Η θεραπεία προσφέρεται από τον ολιστικό σύμβουλο και ψυχοθεραπευτή Σωτήριο Μπάτσο.",
+    book: "Κλείσε ραντεβού",
+    help: "Πώς μπορώ να βοηθήσω",
+  },
+} as const;
+
 function BookConsultationButton({
   bookingHref,
+  label,
   className,
 }: {
   bookingHref: string | null;
+  label: string;
   className?: string;
 }) {
   return (
     <Button size="lg" asChild className={className}>
-      <Link href={bookingHref ?? "/book"}>Book a consultation</Link>
+      <Link href={bookingHref ?? "/book"}>{label}</Link>
     </Button>
   );
 }
 
 export function LovableHero({ bookingHref }: Props) {
+  const { language } = useLanguage();
+  const t = copy[language];
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-primary">
       {/* Deep-water gradient: darker at the top, easing toward the surface. */}
@@ -39,19 +64,17 @@ export function LovableHero({ bookingHref }: Props) {
           <FadeIn delay={0.1} className="mb-8 flex items-center gap-3">
             <div className="h-px w-10 bg-accent" />
             <span className="text-xs uppercase tracking-[0.25em] text-accent">
-              Integrative Counselling &amp; Psychotherapy
+              {t.eyebrow}
             </span>
           </FadeIn>
           <FadeIn delay={0.3}>
             <h1 className="mb-8 font-serif text-5xl leading-[1.05] text-balance md:text-7xl">
-              A quiet space to think, feel, and find your way.
+              {t.heading}
             </h1>
           </FadeIn>
           <FadeIn delay={0.5}>
             <p className="mb-10 max-w-xl text-lg font-light leading-relaxed text-primary-foreground/85 md:text-xl">
-              Calmnous offers thoughtful, confidential therapy with Sotirios Batsos
-              — an integrative psychotherapist who works with what you actually
-              carry, not the polished version.
+              {t.body}
             </p>
           </FadeIn>
           <FadeIn
@@ -60,13 +83,14 @@ export function LovableHero({ bookingHref }: Props) {
           >
             <BookConsultationButton
               bookingHref={bookingHref}
+              label={t.book}
               className="rounded-full bg-background px-8 text-primary hover:bg-background/90"
             />
             <Link
-              href="/#philosophy"
+              href="/#services"
               className="border-b border-accent pb-1 text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:text-accent"
             >
-              Browse services
+              {t.help}
             </Link>
           </FadeIn>
         </div>

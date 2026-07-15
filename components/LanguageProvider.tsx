@@ -32,6 +32,12 @@ export function LanguageProvider({
     }
   }, []);
 
+  // Keep the document language in sync so Greek all-caps drops accents
+  // (per Greek casing rules) and screen readers use the right voice.
+  useEffect(() => {
+    document.documentElement.lang = language === "gr" ? "el" : "en";
+  }, [language]);
+
   function setLanguage(lang: Language) {
     setLanguageState(lang);
     localStorage.setItem("calmnous-lang", lang);

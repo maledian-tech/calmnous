@@ -4,7 +4,6 @@ import {
 } from "@/lib/resolve-public-paths";
 
 import { AboutApproach } from "@/components/lovable/AboutApproach";
-import { AboutCredentials } from "@/components/lovable/AboutCredentials";
 import { LovableAbout } from "@/components/lovable/LovableAbout";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
@@ -21,7 +20,6 @@ export default function AboutPage() {
       <LovableSiteHeader logoSrc={logoSrc} bookingHref={null} />
       <LovableAbout photoSrc={photoSrc} />
       <AboutApproach />
-      <AboutCredentials />
       <PageCta />
       <LovableSiteFooter logoSrc={logoSrc} />
     </main>

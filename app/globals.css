@@ -132,6 +132,15 @@
   }
 }
 
+/* Cormorant Garamond has no Greek glyphs, so in Greek the serif display font
+   swaps to EB Garamond (a close Garamond match that covers Greek). Scoped to
+   :lang(el) so the English path and its font-fallback metrics are untouched.
+   Kept unlayered so it outranks the (unlayered) next/font variable class that
+   sets --font-serif-display on <html>. */
+:root:lang(el) {
+  --font-serif-display: var(--font-serif-greek);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

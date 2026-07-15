@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, EB_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -9,9 +9,19 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500", "600"],
 });
 
+// Cormorant Garamond has no Greek glyphs; EB Garamond (a closely-matched
+// Garamond) does. It sits after Cormorant Garamond in the serif stack so Latin
+// keeps Cormorant Garamond and only Greek characters fall through to it.
+const ebGaramondGreek = EB_Garamond({
+  variable: "--font-serif-greek",
+  subsets: ["greek"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
 const inter = Inter({
   variable: "--font-sans-body",
-  subsets: ["latin"],
+  subsets: ["latin", "greek"],
   display: "swap",
   weight: ["300", "400", "500", "600"],
 });
@@ -46,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${cormorant.variable} ${ebGaramondGreek.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

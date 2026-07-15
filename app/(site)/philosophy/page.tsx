@@ -4,7 +4,6 @@ import { LovablePhilosophy } from "@/components/lovable/LovablePhilosophy";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import { PageCta } from "@/components/lovable/PageCta";
-import { PhilosophyModalities } from "@/components/lovable/PhilosophyModalities";
 import { PhilosophyPillars } from "@/components/lovable/PhilosophyPillars";
 import { PhilosophyProcess } from "@/components/lovable/PhilosophyProcess";
 
@@ -18,7 +17,6 @@ export default function PhilosophyPage() {
       <LovableSiteHeader logoSrc={logoSrc} bookingHref={null} />
       <LovablePhilosophy />
       <PhilosophyPillars />
-      <PhilosophyModalities />
       <PhilosophyProcess />
       <PageCta />
       <LovableSiteFooter logoSrc={logoSrc} />
