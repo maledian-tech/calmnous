@@ -1,3 +1,4 @@
+import { T } from "@/components/T";
 import { BookingFaq } from "@/components/lovable/BookingFaq";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
@@ -60,16 +61,20 @@ export default function BookPage() {
           <div className="mb-6 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
             <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Book a session
+              <T en="Book a session" gr="Κλείσε ραντεβού" />
             </span>
           </div>
           <h1 className="max-w-2xl font-serif text-5xl leading-tight text-primary md:text-6xl">
-            Whenever you&apos;re ready,<br className="hidden md:block" /> the room is here.
+            <T
+              en="Whenever you're ready, the room is here."
+              gr="Όποτε είσαι έτοιμος, ο χώρος είναι εδώ."
+            />
           </h1>
           <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-foreground/70">
-            Book a confidential 20-minute introductory call below, or reserve a
-            full session. No commitment — simply a chance to see if this feels
-            like the right space for you.
+            <T
+              en="Book a confidential 20-minute introductory call below, or reserve a full session. No commitment — simply a chance to see if this feels like the right space for you."
+              gr="Κλείσε παρακάτω ένα εμπιστευτικό εισαγωγικό τηλεφώνημα 20 λεπτών ή κράτησε μια πλήρη συνεδρία. Χωρίς δέσμευση — απλώς μια ευκαιρία να δεις αν αυτός ο χώρος είναι ο σωστός για σένα."
+            />
           </p>
         </div>
       </div>
@@ -85,24 +90,38 @@ export default function BookPage() {
           <div className="md:col-span-2">
             <div className="mb-6 flex items-center gap-3">
               <div className="h-px w-8 bg-accent" />
-              <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">What to expect</span>
+              <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                <T en="What to expect" gr="Τι να περιμένεις" />
+              </span>
             </div>
             <ul className="space-y-4 text-foreground/80 font-light leading-relaxed">
               <li className="flex gap-3">
                 <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                The introductory call is a relaxed, informal conversation — no pressure, no agenda.
+                <T
+                  en="The introductory call is a relaxed, informal conversation — no pressure, no agenda."
+                  gr="Το εισαγωγικό τηλεφώνημα είναι μια χαλαρή, ανεπίσημη συζήτηση — χωρίς πίεση, χωρίς ατζέντα."
+                />
               </li>
               <li className="flex gap-3">
                 <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                We&apos;ll talk about what&apos;s been going on for you, and what you might be looking for from therapy.
+                <T
+                  en="We'll talk about what's been going on for you, and what you might be looking for from therapy."
+                  gr="Θα μιλήσουμε για το τι συμβαίνει στη ζωή σου και τι μπορεί να αναζητάς από τη θεραπεία."
+                />
               </li>
               <li className="flex gap-3">
                 <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                You&apos;re welcome to ask questions and get a sense of whether this feels like the right space.
+                <T
+                  en="You're welcome to ask questions and get a sense of whether this feels like the right space."
+                  gr="Μπορείς να κάνεις ερωτήσεις και να νιώσεις αν αυτός ο χώρος είναι ο σωστός για σένα."
+                />
               </li>
               <li className="flex gap-3">
                 <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                There&apos;s no pressure to commit — it&apos;s simply a chance to see if it feels like a good fit.
+                <T
+                  en="There's no pressure to commit — it's simply a chance to see if it feels like a good fit."
+                  gr="Δεν υπάρχει καμία πίεση να δεσμευτείς — είναι απλώς μια ευκαιρία να δεις αν ταιριάζουμε."
+                />
               </li>
             </ul>
           </div>
@@ -110,14 +129,22 @@ export default function BookPage() {
           <div className="rounded-2xl border border-border bg-background/70 px-8 py-8 shadow-[var(--shadow-soft)]">
             <div className="mb-4 h-px w-8 bg-accent" />
             <h2 className="font-serif text-2xl leading-snug text-primary">
-              If you&apos;re unsure, that&apos;s okay.
+              <T
+                en="If you're unsure, that's okay."
+                gr="Αν έχεις αμφιβολίες, δεν πειράζει."
+              />
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-foreground/75">
-              It&apos;s completely normal to feel uncertain about starting therapy. You don&apos;t need to be certain
-              or have everything figured out.
+              <T
+                en="It's completely normal to feel uncertain about starting therapy. You don't need to be certain or have everything figured out."
+                gr="Είναι απόλυτα φυσιολογικό να νιώθεις αβεβαιότητα για την έναρξη της θεραπείας. Δεν χρειάζεται να είσαι σίγουρος ή να τα έχεις όλα ξεκαθαρισμένα."
+              />
             </p>
             <p className="mt-3 text-sm font-light leading-relaxed text-foreground/75">
-              A conversation is enough to begin.
+              <T
+                en="A conversation is enough to begin."
+                gr="Μια συζήτηση αρκεί για να ξεκινήσουμε."
+              />
             </p>
           </div>
         </div>
@@ -127,37 +154,60 @@ export default function BookPage() {
       <section className="border-t border-border px-6 py-24 md:px-16">
         <div className="mb-10 flex items-center gap-3">
           <div className="h-px w-8 bg-accent" />
-          <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Practical details</span>
+          <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+            <T en="Practical details" gr="Πρακτικές λεπτομέρειες" />
+          </span>
         </div>
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
             <div className="mb-3 flex items-center gap-2">
               <IconClock />
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Sessions</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                <T en="Sessions" gr="Συνεδρίες" />
+              </p>
             </div>
-            <p className="font-serif text-lg text-primary">50 minutes</p>
+            <p className="font-serif text-lg text-primary">
+              <T en="50 minutes" gr="50 λεπτά" />
+            </p>
             <p className="mt-2 text-sm font-light leading-relaxed text-foreground/75">
-              We&apos;ll agree on a time and frequency that works for you — weekly sessions are most common.
+              <T
+                en="We'll agree on a time and frequency that works for you — weekly sessions are most common."
+                gr="Θα συμφωνήσουμε σε ώρα και συχνότητα που σου ταιριάζει — οι εβδομαδιαίες συνεδρίες είναι οι πιο συνηθισμένες."
+              />
             </p>
           </div>
           <div>
             <div className="mb-3 flex items-center gap-2">
               <IconLocation />
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Where</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                <T en="Where" gr="Πού" />
+              </p>
             </div>
-            <p className="font-serif text-lg text-primary">Athens &amp; online</p>
+            <p className="font-serif text-lg text-primary">
+              <T en="Athens & online" gr="Αθήνα & διαδικτυακά" />
+            </p>
             <p className="mt-2 text-sm font-light leading-relaxed text-foreground/75">
-              In person in Athens, Greece — or online, anywhere in the world via a secure video platform.
+              <T
+                en="In person in Athens, Greece — or online, anywhere in the world via a secure video platform."
+                gr="Δια ζώσης στην Αθήνα — ή διαδικτυακά, οπουδήποτε στον κόσμο μέσω ασφαλούς πλατφόρμας βίντεο."
+              />
             </p>
           </div>
           <div>
             <div className="mb-3 flex items-center gap-2">
               <IconFee />
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Fees</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                <T en="Fees" gr="Κόστος" />
+              </p>
             </div>
-            <p className="font-serif text-lg text-primary">Discussed together</p>
+            <p className="font-serif text-lg text-primary">
+              <T en="Discussed together" gr="Το συζητάμε μαζί" />
+            </p>
             <p className="mt-2 text-sm font-light leading-relaxed text-foreground/75">
-              Fees are discussed during the introductory call. Reduced rates may be available — please ask.
+              <T
+                en="Fees are discussed during the introductory call. Reduced rates may be available — please ask."
+                gr="Το κόστος συζητείται στο εισαγωγικό τηλεφώνημα. Ενδέχεται να υπάρχουν μειωμένες χρεώσεις — ρώτησέ με."
+              />
             </p>
           </div>
         </div>
@@ -169,7 +219,7 @@ export default function BookPage() {
           <div className="mb-8 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
             <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Frequently asked questions
+              <T en="Frequently asked questions" gr="Συχνές ερωτήσεις" />
             </span>
           </div>
           <BookingFaq />
@@ -181,7 +231,10 @@ export default function BookPage() {
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
             <p className="font-serif text-2xl leading-snug text-primary md:text-3xl">
-              If booking doesn&apos;t feel like the right step yet, you&apos;re welcome to get in touch.
+              <T
+                en="If booking doesn't feel like the right step yet, you're welcome to get in touch."
+                gr="Αν η κράτηση δεν σου φαίνεται ακόμη το σωστό βήμα, μη διστάσεις να επικοινωνήσεις."
+              />
             </p>
             <div className="mt-6 flex flex-col gap-3">
               <a
@@ -193,19 +246,28 @@ export default function BookPage() {
               </a>
               <div className="flex items-center gap-3 text-sm font-light text-foreground/80">
                 <IconGlobe />
-                Athens, Greece &amp; online worldwide
+                <T
+                  en="Athens, Greece & online worldwide"
+                  gr="Αθήνα, Ελλάδα & διαδικτυακά παγκοσμίως"
+                />
               </div>
             </div>
           </div>
           <div className="md:text-right">
             <p className="mb-6 max-w-sm text-sm font-light leading-relaxed text-foreground/70 md:ml-auto">
-              A first conversation is enough to begin. There is no commitment required — simply a chance to see how it feels.
+              <T
+                en="A first conversation is enough to begin. There is no commitment required — simply a chance to see how it feels."
+                gr="Μια πρώτη συζήτηση αρκεί για να ξεκινήσουμε. Δεν απαιτείται καμία δέσμευση — απλώς μια ευκαιρία να δεις πώς νιώθεις."
+              />
             </p>
             <a
               href="#sbw-calmnous-booking"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Book your free consultation
+              <T
+                en="Book your free consultation"
+                gr="Κλείσε τη δωρεάν γνωριμία σου"
+              />
             </a>
           </div>
         </div>

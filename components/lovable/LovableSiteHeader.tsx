@@ -5,12 +5,13 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import { T } from "@/components/T";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { label: "Philosophy", href: "/philosophy" },
-  { label: "About", href: "/about" },
-  { label: "Journal", href: "/journal" },
+  { label: "Philosophy", labelGr: "Φιλοσοφία", href: "/philosophy" },
+  { label: "About", labelGr: "Γνωριμία", href: "/about" },
+  { label: "Journal", labelGr: "Ημερολόγιο", href: "/journal" },
 ] as const;
 
 const LANGUAGES = [
@@ -156,7 +157,7 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
                 href={l.href}
                 className="group relative text-sm font-medium text-foreground transition-colors hover:text-primary"
               >
-                {l.label}
+                <T en={l.label} gr={l.labelGr} />
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
@@ -169,10 +170,12 @@ export function LovableSiteHeader({ logoSrc, bookingHref }: Props) {
             >
               {ctaHref.startsWith("http") ? (
                 <a href={ctaHref} target="_blank" rel="noopener noreferrer">
-                  Book a session
+                  <T en="Book a session" gr="Κλείσε ραντεβού" />
                 </a>
               ) : (
-                <Link href={ctaHref}>Book a session</Link>
+                <Link href={ctaHref}>
+                  <T en="Book a session" gr="Κλείσε ραντεβού" />
+                </Link>
               )}
             </Button>
           </div>

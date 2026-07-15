@@ -1,4 +1,5 @@
 import { FadeUp } from "@/components/Motion";
+import { T } from "@/components/T";
 
 export type LovableServiceRow = {
   id: string | number;
@@ -19,11 +20,11 @@ export function LovableServices({ items }: Props) {
           <div className="mb-6 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
             <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">
-              Services
+              <T en="Services" gr="Υπηρεσίες" />
             </span>
           </div>
           <h2 className="mb-16 max-w-2xl font-serif text-4xl leading-tight text-primary md:text-5xl">
-            Ways we can work together.
+            <T en="Ways we can work together." gr="Τρόποι να συνεργαστούμε." />
           </h2>
         </FadeUp>
         {items.length === 0 ? (

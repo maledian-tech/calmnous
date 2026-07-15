@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { T } from "@/components/T";
 import { Button } from "@/components/ui/button";
 
 type Props = {
@@ -15,12 +16,13 @@ function BookConsultationButton({
 }) {
   const href = bookingHref ?? "/book";
   const isExternal = href.startsWith("http");
+  const label = <T en="Book a consultation" gr="Κλείσε ραντεβού" />;
 
   if (isExternal) {
     return (
       <Button size="lg" asChild className={className}>
         <a href={href} target="_blank" rel="noopener noreferrer">
-          Book a consultation
+          {label}
         </a>
       </Button>
     );
@@ -28,7 +30,7 @@ function BookConsultationButton({
 
   return (
     <Button size="lg" asChild className={className}>
-      <Link href={href}>Book a consultation</Link>
+      <Link href={href}>{label}</Link>
     </Button>
   );
 }
@@ -40,16 +42,21 @@ export function LovableContact({ bookingHref }: Props) {
         <div className="mb-6 flex items-center justify-center gap-3">
           <div className="h-px w-8 bg-accent" />
           <span className="text-muted-foreground text-xs uppercase tracking-[0.25em]">
-            Get in touch
+            <T en="Get in touch" gr="Επικοινωνία" />
           </span>
           <div className="h-px w-8 bg-accent" />
         </div>
         <h2 className="mb-8 font-serif text-4xl leading-tight text-balance text-primary md:text-6xl">
-          Whenever you&apos;re ready, the room is here.
+          <T
+            en="Whenever you're ready, the room is here."
+            gr="Όποτε είσαι έτοιμος, ο χώρος είναι εδώ."
+          />
         </h2>
         <p className="mx-auto mb-10 max-w-xl text-lg font-light text-foreground/75">
-          Book a confidential 20-minute introductory call. No commitment —
-          simply a chance to see if this feels like the right space for you.
+          <T
+            en="Book a confidential 20-minute introductory call. No commitment — simply a chance to see if this feels like the right space for you."
+            gr="Κλείσε ένα εμπιστευτικό εισαγωγικό τηλεφώνημα 20 λεπτών. Χωρίς δέσμευση — απλώς μια ευκαιρία να δεις αν αυτός ο χώρος είναι ο σωστός για σένα."
+          />
         </p>
         <div className="mb-16 flex flex-wrap justify-center gap-4">
           <BookConsultationButton
@@ -68,30 +75,30 @@ export function LovableContact({ bookingHref }: Props) {
         <div className="grid gap-8 border-t border-border pt-12 text-left sm:grid-cols-3">
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
-              Practice
+              <T en="Practice" gr="Έδρα" />
             </p>
             <p className="font-light text-foreground/85">
-              Athens, Greece
+              <T en="Athens, Greece" gr="Αθήνα, Ελλάδα" />
               <br />
-              &amp; online worldwide
+              <T en="& online worldwide" gr="& διαδικτυακά παγκοσμίως" />
             </p>
           </div>
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
-              Hours
+              <T en="Hours" gr="Ώρες" />
             </p>
             <p className="font-light text-foreground/85">
-              Mon — Fri
+              <T en="Mon — Fri" gr="Δευ — Παρ" />
               <br />
               09:00 — 20:00
             </p>
           </div>
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
-              Languages
+              <T en="Languages" gr="Γλώσσες" />
             </p>
             <p className="font-light text-foreground/85">
-              English
+              <T en="English" gr="Αγγλικά" />
               <br />
               Ελληνικά
             </p>

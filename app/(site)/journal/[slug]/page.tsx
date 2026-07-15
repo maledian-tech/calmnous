@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 
+import { T } from "@/components/T";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
@@ -12,13 +13,16 @@ import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
-function formatDate(dateStr: string | null | undefined): string {
-  if (!dateStr) return "";
-  return new Date(dateStr).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+function formatDate(
+  dateStr: string | null | undefined,
+): { en: string; gr: string } {
+  if (!dateStr) return { en: "", gr: "" };
+  const opts = { day: "numeric", month: "long", year: "numeric" } as const;
+  const d = new Date(dateStr);
+  return {
+    en: d.toLocaleDateString("en-GB", opts),
+    gr: d.toLocaleDateString("el-GR", opts),
+  };
 }
 
 export default async function JournalPostPage({
@@ -60,11 +64,12 @@ export default async function JournalPostPage({
             href="/journal"
             className="mb-10 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary"
           >
-            <span className="h-px w-5 bg-accent" /> Journal
+            <span className="h-px w-5 bg-accent" />{" "}
+            <T en="Journal" gr="Ημερολόγιο" />
           </Link>
-          {date && (
+          {date.en && (
             <p className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">
-              {date}
+              <T en={date.en} gr={date.gr} />
             </p>
           )}
           <h1 className="font-serif text-4xl leading-tight text-primary md:text-5xl">
@@ -92,7 +97,8 @@ export default async function JournalPostPage({
               href="/journal"
               className="inline-flex items-center gap-3 text-sm uppercase tracking-widest text-primary transition-colors hover:text-primary/70"
             >
-              <span className="h-px w-6 bg-accent" /> Back to Journal
+              <span className="h-px w-6 bg-accent" />{" "}
+              <T en="Back to Journal" gr="Πίσω στο Ημερολόγιο" />
             </Link>
           </div>
         </div>

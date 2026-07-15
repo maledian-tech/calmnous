@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FadeUp } from "@/components/Motion";
+import { T } from "@/components/T";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
 
 export function PageCta() {
@@ -10,13 +11,20 @@ export function PageCta() {
       <div className="relative mx-auto max-w-2xl text-center">
         <FadeUp>
           <p className="font-serif text-3xl italic leading-snug text-primary md:text-4xl">
-            &ldquo;A conversation is enough to begin.&rdquo;
+            &ldquo;
+            <T
+              en="A conversation is enough to begin."
+              gr="Μια συζήτηση αρκεί για να ξεκινήσουμε."
+            />
+            &rdquo;
           </p>
         </FadeUp>
         <FadeUp delay={0.15}>
           <p className="mt-6 font-light leading-relaxed text-foreground/70">
-            If something here has resonated, you are welcome to reach out — or
-            simply book a time to talk.
+            <T
+              en="If something here has resonated, you are welcome to reach out — or simply book a time to talk."
+              gr="Αν κάτι εδώ σε άγγιξε, μη διστάσεις να επικοινωνήσεις — ή απλώς κλείσε έναν χρόνο για να μιλήσουμε."
+            />
           </p>
         </FadeUp>
         <FadeUp delay={0.3}>
@@ -24,7 +32,7 @@ export function PageCta() {
             href="/book"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Book a session
+            <T en="Book a session" gr="Κλείσε ραντεβού" />
           </Link>
         </FadeUp>
       </div>

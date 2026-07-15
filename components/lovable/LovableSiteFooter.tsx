@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageProvider";
+import { T } from "@/components/T";
 
 type Props = {
   logoSrc: string | null;
@@ -175,17 +176,23 @@ export function LovableSiteFooter({ logoSrc }: Props) {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
-              Integrative counselling and psychotherapy by{" "}
+              <T
+                en="Integrative counselling and psychotherapy by "
+                gr="Ολιστική συμβουλευτική και ψυχοθεραπεία από τον "
+              />
               <span className="font-medium text-foreground/80">
-                Sotirios Batsos
-              </span>{" "}
-              — a calm, confidential space, in person and online.
+                <T en="Sotirios Batsos" gr="Σωτήριο Μπάτσο" />
+              </span>
+              <T
+                en=" — a calm, confidential space, in person and online."
+                gr=" — έναν ήρεμο, εμπιστευτικό χώρο, δια ζώσης και διαδικτυακά."
+              />
             </p>
           </div>
 
           <div className="md:col-span-4">
             <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
-              Get in touch
+              <T en="Get in touch" gr="Επικοινωνία" />
             </h2>
             <a
               href={`mailto:${email}`}
@@ -197,7 +204,10 @@ export function LovableSiteFooter({ logoSrc }: Props) {
               <span>
                 <span className="block text-sm font-medium">{email}</span>
                 <span className="mt-0.5 block text-xs font-light text-muted-foreground">
-                  Email is usually the quickest way to reach us.
+                  <T
+                    en="Email is usually the quickest way to reach us."
+                    gr="Το email είναι συνήθως ο πιο γρήγορος τρόπος επικοινωνίας."
+                  />
                 </span>
               </span>
             </a>
@@ -205,21 +215,25 @@ export function LovableSiteFooter({ logoSrc }: Props) {
 
           <div className="md:col-span-2">
             <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
-              Explore
+              <T en="Explore" gr="Πλοήγηση" />
             </h2>
             <nav className="mt-4 flex flex-col gap-2">
               {[
-                { label: "Journal", href: "/journal" },
-                { label: "Services", href: "/#services" },
-                { label: "About", href: "/about" },
-                { label: "Philosophy", href: "/philosophy" },
+                { label: "Journal", labelGr: "Ημερολόγιο", href: "/journal" },
+                { label: "Services", labelGr: "Υπηρεσίες", href: "/#services" },
+                { label: "About", labelGr: "Γνωριμία", href: "/about" },
+                {
+                  label: "Philosophy",
+                  labelGr: "Φιλοσοφία",
+                  href: "/philosophy",
+                },
               ].map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   className="text-sm font-light text-foreground/75 transition-colors hover:text-primary"
                 >
-                  {l.label}
+                  <T en={l.label} gr={l.labelGr} />
                 </a>
               ))}
             </nav>
@@ -228,7 +242,7 @@ export function LovableSiteFooter({ logoSrc }: Props) {
             {instagramUrl ? (
               <>
                 <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
-                  Connect
+                  <T en="Connect" gr="Ακολούθησε" />
                 </h2>
                 <a
                   href={instagramUrl}
@@ -252,7 +266,7 @@ export function LovableSiteFooter({ logoSrc }: Props) {
 
         <div className="mt-14 border-t border-border pt-10">
           <p className="mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground/70">
-            Professional memberships
+            <T en="Professional memberships" gr="Επαγγελματικές ενώσεις" />
           </p>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
             <a
@@ -295,12 +309,20 @@ export function LovableSiteFooter({ logoSrc }: Props) {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8 text-center md:flex-row md:items-center md:justify-between md:text-left">
           <p className="text-xs font-light text-muted-foreground">
-            © {year} <span className="font-medium text-foreground/80">Calmnous</span> —
-            integrative counselling &amp; psychotherapy by{" "}
-            <span className="font-medium text-foreground/80">Sotirios Batsos</span>
+            © {year} <span className="font-medium text-foreground/80">Calmnous</span> —{" "}
+            <T
+              en="integrative counselling & psychotherapy by "
+              gr="ολιστική συμβουλευτική & ψυχοθεραπεία από τον "
+            />
+            <span className="font-medium text-foreground/80">
+              <T en="Sotirios Batsos" gr="Σωτήριο Μπάτσο" />
+            </span>
           </p>
           <p className="text-[0.65rem] font-medium uppercase tracking-wider text-muted-foreground/90">
-            Confidentiality · Athens &amp; online
+            <T
+              en="Confidentiality · Athens & online"
+              gr="Εμπιστευτικότητα · Αθήνα & διαδικτυακά"
+            />
           </p>
         </div>
       </div>

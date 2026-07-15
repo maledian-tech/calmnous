@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getPayload } from "payload";
 
+import { T } from "@/components/T";
 import { LovableSiteFooter } from "@/components/lovable/LovableSiteFooter";
 import { LovableSiteHeader } from "@/components/lovable/LovableSiteHeader";
 import { WaveDecoration } from "@/components/lovable/WaveDecoration";
@@ -10,13 +11,16 @@ import { resolvePublicLogoPath } from "@/lib/resolve-public-paths";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
-function formatDate(dateStr: string | null | undefined): string {
-  if (!dateStr) return "";
-  return new Date(dateStr).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+function formatDate(
+  dateStr: string | null | undefined,
+): { en: string; gr: string } {
+  if (!dateStr) return { en: "", gr: "" };
+  const opts = { day: "numeric", month: "long", year: "numeric" } as const;
+  const d = new Date(dateStr);
+  return {
+    en: d.toLocaleDateString("en-GB", opts),
+    gr: d.toLocaleDateString("el-GR", opts),
+  };
 }
 
 export default async function JournalPage() {
@@ -42,15 +46,17 @@ export default async function JournalPage() {
           <div className="mb-6 flex items-center gap-3">
             <div className="h-px w-8 bg-accent" />
             <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Journal
+              <T en="Journal" gr="Ημερολόγιο" />
             </span>
           </div>
           <h1 className="max-w-2xl font-serif text-5xl leading-tight text-primary md:text-6xl">
-            Thoughts from the practice.
+            <T en="Thoughts from the practice." gr="Σκέψεις από την πρακτική." />
           </h1>
           <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-foreground/70">
-            Occasional writing on therapy, depth, and the quiet work of living
-            well.
+            <T
+              en="Occasional writing on therapy, depth, and the quiet work of living well."
+              gr="Περιστασιακά κείμενα για τη θεραπεία, το βάθος και την ήσυχη δουλειά του να ζεις καλά."
+            />
           </p>
         </div>
       </div>
@@ -61,10 +67,16 @@ export default async function JournalPage() {
           {posts.docs.length === 0 ? (
             <div className="py-24 text-center">
               <p className="font-serif text-3xl text-primary/50">
-                The journal is quiet for now.
+                <T
+                  en="The journal is quiet for now."
+                  gr="Το ημερολόγιο είναι ήσυχο προς το παρόν."
+                />
               </p>
               <p className="mt-3 text-sm font-light text-muted-foreground">
-                New writing will appear here when it&apos;s ready.
+                <T
+                  en="New writing will appear here when it's ready."
+                  gr="Νέα κείμενα θα εμφανιστούν εδώ μόλις είναι έτοιμα."
+                />
               </p>
             </div>
           ) : (
@@ -79,9 +91,9 @@ export default async function JournalPage() {
                     href={`/journal/${post.slug}`}
                     className="group block bg-background p-10 transition-colors duration-500 hover:bg-card md:p-12"
                   >
-                    {date && (
+                    {date.en && (
                       <p className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">
-                        {date}
+                        <T en={date.en} gr={date.gr} />
                       </p>
                     )}
                     <h2 className="mb-4 font-serif text-3xl leading-snug text-primary transition-colors group-hover:text-primary/80">
@@ -93,7 +105,8 @@ export default async function JournalPage() {
                       </p>
                     )}
                     <div className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                      Read more <span className="h-px w-6 bg-accent" />
+                      <T en="Read more" gr="Διάβασε περισσότερα" />{" "}
+                      <span className="h-px w-6 bg-accent" />
                     </div>
                   </Link>
                 );
