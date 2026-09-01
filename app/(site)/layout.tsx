@@ -6,7 +6,7 @@ const structuredData = {
   "@type": "ProfessionalService",
   name: "Calmnous",
   description:
-    "Integrative counselling and psychotherapy by Sotirios Batsos — in person in Northamptonshire and online across the EU & UK.",
+    "Integrative counselling and psychotherapy by Sotirios Batsos — face-to-face in Northamptonshire, UK, and online in the UK & Greece.",
   founder: {
     "@type": "Person",
     name: "Sotirios Batsos",
@@ -16,7 +16,7 @@ const structuredData = {
     "@type": "Person",
     name: "Sotirios Batsos",
   },
-  areaServed: ["United Kingdom", "European Union"],
+  areaServed: ["United Kingdom", "Greece"],
   knowsAbout: ["Counselling", "Psychotherapy", "Integrative therapy"],
 };
 

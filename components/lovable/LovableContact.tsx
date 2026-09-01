@@ -36,6 +36,9 @@ function BookConsultationButton({
 }
 
 export function LovableContact({ bookingHref }: Props) {
+  const email =
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@calmnous.com";
+
   return (
     <section id="contact" className="px-6 py-40 md:px-16">
       <div className="text-center">
@@ -48,14 +51,14 @@ export function LovableContact({ bookingHref }: Props) {
         </div>
         <h2 className="mb-8 font-serif text-4xl leading-tight text-balance text-primary md:text-6xl">
           <T
-            en="Whenever you're ready, the room is here."
+            en="Whenever you're ready, the space is here."
             gr="Όποτε είσαι έτοιμος, ο χώρος είναι εδώ."
           />
         </h2>
         <p className="mx-auto mb-10 max-w-xl text-lg font-light text-foreground/75">
           <T
-            en="Book a confidential 20-minute introductory call. No commitment — simply a chance to see if this feels like the right space for you."
-            gr="Κλείσε ένα εμπιστευτικό εισαγωγικό τηλεφώνημα 20 λεπτών. Χωρίς δέσμευση — απλώς μια ευκαιρία να δεις αν αυτός ο χώρος είναι ο σωστός για σένα."
+            en="Book a free, confidential 15-minute introductory consultation. There is no commitment, simply a chance to talk, ask any questions, and see whether working together feels right."
+            gr="Κλείσε μια δωρεάν, εμπιστευτική εισαγωγική γνωριμία 15 λεπτών. Δεν υπάρχει καμία δέσμευση, απλώς μια ευκαιρία να μιλήσουμε, να κάνεις ερωτήσεις και να δούμε αν η συνεργασία μας είναι η κατάλληλη."
           />
         </p>
         <div className="mb-16 flex flex-wrap justify-center gap-4">
@@ -69,7 +72,7 @@ export function LovableContact({ bookingHref }: Props) {
             asChild
             className="rounded-full border-primary/30 px-8 text-primary hover:bg-secondary"
           >
-            <a href="mailto:hello@calmnous.com">hello@calmnous.com</a>
+            <a href={`mailto:${email}`}>{email}</a>
           </Button>
         </div>
         <div className="grid gap-8 border-t border-border pt-12 text-left sm:grid-cols-3">
@@ -78,20 +81,40 @@ export function LovableContact({ bookingHref }: Props) {
               <T en="Practice" gr="Έδρα" />
             </p>
             <p className="font-light text-foreground/85">
-              <T en="Athens, Greece" gr="Αθήνα, Ελλάδα" />
+              <T
+                en="Northamptonshire, UK"
+                gr="Northamptonshire, Ηνωμένο Βασίλειο"
+              />
               <br />
-              <T en="& online worldwide" gr="& διαδικτυακά παγκοσμίως" />
+              <T
+                en="Face-to-face by arrangement"
+                gr="Δια ζώσης κατόπιν συνεννόησης"
+              />
+              <br />
+              <T
+                en="Online in the UK & Greece"
+                gr="Διαδικτυακά σε Ηνωμένο Βασίλειο & Ελλάδα"
+              />
             </p>
           </div>
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
               <T en="Hours" gr="Ώρες" />
             </p>
-            <p className="font-light text-foreground/85">
-              <T en="Mon — Fri" gr="Δευ — Παρ" />
-              <br />
-              09:00 — 20:00
-            </p>
+            <dl className="font-light text-foreground/85">
+              {[
+                { day: "Mon — Fri", dayGr: "Δευ — Παρ", time: "18:30 — 20:30" },
+                { day: "Saturday", dayGr: "Σάββατο", time: "10:00 — 16:00" },
+                { day: "Sunday", dayGr: "Κυριακή", time: "10:00 — 14:00" },
+              ].map((row) => (
+                <div key={row.day} className="flex justify-between gap-4">
+                  <dt>
+                    <T en={row.day} gr={row.dayGr} />
+                  </dt>
+                  <dd className="tabular-nums">{row.time}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <div>
             <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">

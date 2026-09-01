@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Calmnous — Sotirios Batsos",
   },
   description:
-    "Calmnous is the integrative counselling and psychotherapy practice of Sotirios Batsos — a calm, respectful space, in person in Northamptonshire and online across the EU & UK.",
+    "Calmnous is the integrative counselling and psychotherapy practice of Sotirios Batsos — a calm, respectful space, face-to-face in Northamptonshire, UK, and online in the UK & Greece.",
   applicationName: "Calmnous",
   authors: [{ name: "Sotirios Batsos" }],
   creator: "Sotirios Batsos",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title:
       "Calmnous | Integrative counselling & psychotherapy by Sotirios Batsos",
     description:
-      "Integrative counselling and psychotherapy with Sotirios Batsos — in person in Northamptonshire and online across the EU & UK.",
+      "Integrative counselling and psychotherapy with Sotirios Batsos — face-to-face in Northamptonshire, UK, and online in the UK & Greece.",
     siteName: "Calmnous",
     type: "website",
   },

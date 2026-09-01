@@ -11,7 +11,7 @@ const copy = {
       {
         number: "01",
         title: "First meeting",
-        body: "We begin with a free 15-minute introductory call. It is an opportunity to ask questions, discuss what brings you to therapy and decide whether working together feels right. If it does, we will arrange your first session.",
+        body: "We begin with a free 15-minute introductory consultation. It is an opportunity to ask questions, discuss what brings you to therapy and decide whether working together feels right. If it does, we will arrange your first session.",
       },
       {
         number: "02",
@@ -32,7 +32,7 @@ const copy = {
       {
         number: "01",
         title: "Η πρώτη συνάντηση",
-        body: "Ξεκινάμε με ένα δωρεάν εισαγωγικό τηλεφώνημα 15 λεπτών. Είναι μια ευκαιρία να κάνεις ερωτήσεις, να συζητήσουμε τι σε φέρνει στη θεραπεία και να αποφασίσεις αν η συνεργασία μας είναι η κατάλληλη για σένα. Αν είναι, κανονίζουμε την πρώτη σου συνεδρία.",
+        body: "Ξεκινάμε με μια δωρεάν εισαγωγική γνωριμία 15 λεπτών. Είναι μια ευκαιρία να κάνεις ερωτήσεις, να συζητήσουμε τι σε φέρνει στη θεραπεία και να αποφασίσεις αν η συνεργασία μας είναι η κατάλληλη για σένα. Αν είναι, κανονίζουμε την πρώτη σου συνεδρία.",
       },
       {
         number: "02",

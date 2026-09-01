@@ -4,26 +4,27 @@ import { T } from "@/components/T";
 const steps = [
   {
     n: "I",
-    title: "Reach out",
-    titleGr: "Επικοινώνησε",
-    desc: "A short message or call to share what brings you here.",
-    descGr: "Ένα σύντομο μήνυμα ή τηλεφώνημα για να μοιραστείς τι σε φέρνει εδώ.",
+    title: "Get in touch",
+    titleGr: "Επικοινωνία",
+    desc: "Send a short message to share what brings you to counselling and what you are looking for.",
+    descGr:
+      "Στείλε ένα σύντομο μήνυμα για να μοιραστείς τι σε φέρνει στη συμβουλευτική και τι αναζητάς.",
   },
   {
     n: "II",
     title: "Initial consultation",
-    titleGr: "Πρώτη συνάντηση",
-    desc: "A 50-minute meeting to explore fit, focus, and the work ahead.",
+    titleGr: "Πρώτη γνωριμία",
+    desc: "We begin with a free 15-minute consultation to talk briefly about what brings you here, answer any questions, and see whether working together feels right.",
     descGr:
-      "Μια συνάντηση 50 λεπτών για να δούμε αν ταιριάζουμε, τι μας απασχολεί και τη δουλειά που ακολουθεί.",
+      "Ξεκινάμε με μια δωρεάν γνωριμία 15 λεπτών, για να μιλήσουμε σύντομα για το τι σε φέρνει εδώ, να απαντήσω σε τυχόν ερωτήσεις και να δούμε αν η συνεργασία μας είναι η κατάλληλη.",
   },
   {
     n: "III",
     title: "Ongoing sessions",
     titleGr: "Τακτικές συνεδρίες",
-    desc: "Weekly conversations, in person or online, at a rhythm that suits you.",
+    desc: "If we decide to work together, sessions are usually weekly and can take place online or face to face, as agreed together.",
     descGr:
-      "Εβδομαδιαίες συζητήσεις, δια ζώσης ή διαδικτυακά, σε ρυθμό που σου ταιριάζει.",
+      "Αν αποφασίσουμε να συνεργαστούμε, οι συνεδρίες είναι συνήθως εβδομαδιαίες και μπορούν να γίνονται διαδικτυακά ή δια ζώσης, όπως συμφωνήσουμε μαζί.",
   },
 ] as const;
 
@@ -40,8 +41,8 @@ export function LovableApproach() {
           </div>
           <h2 className="mb-16 max-w-2xl font-serif text-4xl leading-tight md:text-5xl">
             <T
-              en="How a journey with Calmnous begins."
-              gr="Πώς ξεκινά μια πορεία με το Calmnous."
+              en="How working with Calmnous begins."
+              gr="Πώς ξεκινά η συνεργασία με το Calmnous."
             />
           </h2>
         </FadeUp>

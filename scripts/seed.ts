@@ -32,10 +32,10 @@ const SAMPLE_SERVICES = [
     title: 'Face to face',
     slug: 'face-to-face',
     summary:
-      'In-person sessions in a calm, confidential setting — meeting together in the same room, at a pace that lets trust build.',
+      'In-person sessions offer a private space to meet together, allowing the therapeutic relationship to develop naturally and at your own pace.',
     subItems: [
-      'Based in Northamptonshire — or meet in person anywhere by arrangement',
-      'Walk-and-talk sessions, where gentle movement outdoors makes room for what is hard to say',
+      'Face-to-face sessions available in Northamptonshire, UK, by prior arrangement, subject to location and room availability',
+      'Walk-and-talk sessions available by arrangement, offering the option to explore what is on your mind while walking outdoors',
     ],
     sortOrder: 10,
     published: true as const,
@@ -44,8 +44,8 @@ const SAMPLE_SERVICES = [
     title: 'Online',
     slug: 'online',
     summary:
-      'Secure video sessions from wherever you feel most at ease — the same steady, confidential support, without the travel.',
-    subItems: ['Available anywhere in the EU & UK'],
+      'Secure video sessions from a private space where you feel comfortable and able to speak freely, offering confidential and thoughtful support without the need to travel.',
+    subItems: ['Online sessions are currently available to clients in the UK and Greece.'],
     sortOrder: 20,
     published: true as const,
   },

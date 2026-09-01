@@ -132,7 +132,7 @@ function CrisisBand({ language }: { language: "en" | "gr" }) {
 export function LovableSiteFooter({ logoSrc }: Props) {
   const { language } = useLanguage();
   const email =
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "hello@calmnous.com";
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@calmnous.com";
   const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() || "";
   const instagramLabel =
     process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE?.trim() || "Instagram";
@@ -184,8 +184,8 @@ export function LovableSiteFooter({ logoSrc }: Props) {
                 <T en="Sotirios Batsos" gr="Σωτήριο Μπάτσο" />
               </span>
               <T
-                en=" — a calm, confidential space, in person and online."
-                gr=" — έναν ήρεμο, εμπιστευτικό χώρο, δια ζώσης και διαδικτυακά."
+                en=". Face-to-face in Northamptonshire, UK. Online in the UK & Greece."
+                gr=". Δια ζώσης στο Northamptonshire, Ηνωμένο Βασίλειο. Διαδικτυακά σε Ηνωμένο Βασίλειο & Ελλάδα."
               />
             </p>
           </div>
@@ -205,8 +205,8 @@ export function LovableSiteFooter({ logoSrc }: Props) {
                 <span className="block text-sm font-medium">{email}</span>
                 <span className="mt-0.5 block text-xs font-light text-muted-foreground">
                   <T
-                    en="Email is usually the quickest way to reach us."
-                    gr="Το email είναι συνήθως ο πιο γρήγορος τρόπος επικοινωνίας."
+                    en="The easiest way to get in touch is by email."
+                    gr="Ο ευκολότερος τρόπος επικοινωνίας είναι μέσω email."
                   />
                 </span>
               </span>
@@ -320,8 +320,8 @@ export function LovableSiteFooter({ logoSrc }: Props) {
           </p>
           <p className="text-[0.65rem] font-medium uppercase tracking-wider text-muted-foreground/90">
             <T
-              en="Confidentiality · Athens & online"
-              gr="Εμπιστευτικότητα · Αθήνα & διαδικτυακά"
+              en="Confidentiality · Northamptonshire, UK · Online in the UK & Greece"
+              gr="Εμπιστευτικότητα · Northamptonshire, ΗΒ · Διαδικτυακά σε ΗΒ & Ελλάδα"
             />
           </p>
         </div>
