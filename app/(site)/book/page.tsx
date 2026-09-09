@@ -242,8 +242,14 @@ export default function BookPage() {
             </dl>
             <p className="mt-4 text-sm font-light leading-relaxed text-foreground/75">
               <T
-                en="Sessions are 50 minutes. The fee for face-to-face sessions includes the cost of the consulting room. The initial 15-minute consultation is free."
-                gr="Οι συνεδρίες διαρκούν 50 λεπτά. Το κόστος των δια ζώσης συνεδριών περιλαμβάνει το κόστος του χώρου. Η αρχική γνωριμία 15 λεπτών είναι δωρεάν."
+                en="Sessions are 50 minutes. The fee for face-to-face sessions includes the cost of the consulting room."
+                gr="Οι συνεδρίες διαρκούν 50 λεπτά. Το κόστος των δια ζώσης συνεδριών περιλαμβάνει το κόστος του χώρου."
+              />
+            </p>
+            <p className="mt-3 text-sm font-light leading-relaxed text-foreground/75">
+              <T
+                en="The initial 15-minute consultation is free."
+                gr="Η αρχική γνωριμία 15 λεπτών είναι δωρεάν."
               />
             </p>
             <p className="mt-3 text-sm font-light leading-relaxed text-foreground/75">
