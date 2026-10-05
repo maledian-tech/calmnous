@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, EB_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif-display",
@@ -27,6 +28,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default:
       "Calmnous | Integrative counselling & psychotherapy by Sotirios Batsos",
