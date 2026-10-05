@@ -297,6 +297,18 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      graphics: {
+        Logo: '/components/payload/AdminLogo#AdminLogo',
+        Icon: '/components/payload/AdminIcon#AdminIcon',
+      },
+    },
+    meta: {
+      // The root layout's title template already appends the site name.
+      titleSuffix: '',
+      icons: [{ rel: 'icon', url: '/favicon.ico' }],
+      defaultOGImageType: 'off',
+    },
   },
   collections: [Users, Media, Services, Posts],
   editor: lexicalEditor(),
