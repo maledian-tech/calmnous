@@ -219,7 +219,7 @@ export default function BookPage() {
                 {
                   label: "Face-to-face sessions",
                   labelGr: "Δια ζώσης συνεδρίες",
-                  fee: "£65",
+                  fee: "£55",
                 },
                 {
                   label: "Walk-and-talk sessions",

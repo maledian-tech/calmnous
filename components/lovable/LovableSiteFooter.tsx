@@ -48,6 +48,24 @@ function IconInstagram({ className }: { className?: string }) {
   );
 }
 
+function IconFacebook({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
 function IconLifeBuoy({ className }: { className?: string }) {
   return (
     <svg
@@ -133,9 +151,22 @@ export function LovableSiteFooter({ logoSrc }: Props) {
   const { language } = useLanguage();
   const email =
     process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "info@calmnous.com";
-  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() || "";
-  const instagramLabel =
-    process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE?.trim() || "Instagram";
+  const socials = [
+    {
+      label: "Instagram",
+      href:
+        process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() ||
+        "https://www.instagram.com/calmnous",
+      Icon: IconInstagram,
+    },
+    {
+      label: "Facebook",
+      href:
+        process.env.NEXT_PUBLIC_FACEBOOK_URL?.trim() ||
+        "https://www.facebook.com/share/19ru3xMmaF/",
+      Icon: IconFacebook,
+    },
+  ];
 
   const bacpReg =
     process.env.NEXT_PUBLIC_BACP_REGISTRATION?.trim() || "";
@@ -239,28 +270,24 @@ export function LovableSiteFooter({ logoSrc }: Props) {
             </nav>
           </div>
           <div className="md:col-span-2">
-            {instagramUrl ? (
-              <>
-                <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
-                  <T en="Connect" gr="Ακολούθησε" />
-                </h2>
+            <h2 className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-primary">
+              <T en="Connect" gr="Ακολούθησε" />
+            </h2>
+            <div className="mt-4 flex items-center gap-4">
+              {socials.map(({ label, href, Icon }) => (
                 <a
-                  href={instagramUrl}
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 flex items-start gap-3 rounded-lg py-1 text-foreground/90 transition-colors hover:text-primary"
+                  aria-label={`Calmnous on ${label}`}
+                  title={label}
+                  className="text-foreground/60 transition-colors hover:text-primary"
                 >
-                  <span className="mt-0.5 text-accent">
-                    <IconInstagram className="size-5" />
-                  </span>
-                  <span>
-                    <span className="block text-sm font-medium">
-                      {instagramLabel}
-                    </span>
-                  </span>
+                  <Icon className="size-5" />
                 </a>
-              </>
-            ) : null}
+              ))}
+            </div>
           </div>
         </div>
 

@@ -27,6 +27,7 @@ const copy = {
       { k: "BSc (Hons)", v: "Psychology" },
     ],
     readMore: "Read more",
+    psychologyToday: "View my Psychology Today profile",
   },
   gr: {
     photoAlt: "Σωτήριος Μπάτσος — ολιστικός ψυχοθεραπευτής",
@@ -42,8 +43,12 @@ const copy = {
       { k: "BSc (Hons)", v: "Ψυχολογία" },
     ],
     readMore: "Περισσότερα",
+    psychologyToday: "Δες το προφίλ μου στο Psychology Today",
   },
 } as const;
+
+const PSYCHOLOGY_TODAY_URL =
+  "https://www.psychologytoday.com/gb/counselling/sotirios-batsos-kettering/1838232";
 
 export function LovableAbout({ photoSrc, readMoreHref }: Props) {
   const { language } = useLanguage();
@@ -103,6 +108,17 @@ export function LovableAbout({ photoSrc, readMoreHref }: Props) {
                 </div>
               </div>
             ))}
+          </FadeUp>
+          <FadeUp delay={0.35} className="mt-8">
+            <a
+              href={PSYCHOLOGY_TODAY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs uppercase tracking-widest text-primary transition-colors hover:border-primary/40 hover:bg-secondary/60"
+            >
+              {t.psychologyToday}
+              <span aria-hidden>↗</span>
+            </a>
           </FadeUp>
           {readMoreHref && (
             <FadeUp delay={0.4} className="mt-10">
